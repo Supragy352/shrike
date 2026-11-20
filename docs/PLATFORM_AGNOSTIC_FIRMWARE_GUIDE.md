@@ -1,3 +1,5 @@
+(platform_agnostic_firmware_guide)=
+
 # Writing Platform-Agnostic Firmware for Shrike
 
 This guide explains how to write a single firmware source file that runs on all boards in the Shrike family — Shrike-Lite (RP2040), Shrike (RP2350), and Shrike-fi (ESP32-S3) — without maintaining separate codebases.

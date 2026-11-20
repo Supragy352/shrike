@@ -1,29 +1,44 @@
-# Welcome to Shrike Documentation 
+# Shrike Documentation
 
-## NOTE: 
+> **Tip:** Browse the compiled documentation site at **[vicharak-in.github.io/shrike](https://vicharak-in.github.io/shrike/)** for full search, tabbed board selectors, and sidebar navigation.
 
-*A more beautiful compiled version of this documentation is available [here](https://vicharak-in.github.io/shrike/), suggest to use it,if you don't hate sphinx.* 
+This directory contains the Sphinx + MyST Markdown source files for the Shrike family (`Shrike-lite`, `Shrike`, and `Shrike-fi`).
 
-Hello its great to see that you have got shrike dev Board . Now that you have the hardware you can follow the guides we have created and gets your hand's dirty with real hardware. 
+## Documentation Structure
 
-For a bit clarification and to insure there is no confusion please follow this Index (Read from 1 to 10).
+### Getting Started
+1. [Introduction](./introduction.md) — How Shrike combines an MCU and FPGA
+2. [Tools Setup](./tools_setup_guide.md) — Installing Renesas Go Configure Software Hub and MCU tools
+3. [Getting Started (Blink LED)](./getting_started.md) — First blink with Arduino IDE, MicroPython, or CircuitPython
+4. [Generating Your First Bitstream](./generating_your_first_bitstream.md) — Writing, synthesizing, and mapping your first Verilog design
 
+### Hardware Reference
+- [Hardware Overview](./hardware_overview.md) — Board features, power, flash, and optional Shrike-fi add-ons
+- [Board Pinouts & Interconnect](./shrike_pinouts.md) — Pinout diagrams and FPGA–MCU interconnect tables
 
- 1. [Hardware Overview](./hardware_overview.md)
- 2. [Getting Started](./getting_started.md) 
- 3. [Tools Setup](./tools_setup_guide.md)
- 4. [Generating Bitstream](./generating_your_first_bitstream.md)
- 5. [Verilog Style Guide](./verilog_style_guide.md)
- 6. [Shrike Pinout](./shrike_pinouts.md)
+### FPGA Development
+- [Verilog & Synthesis Guide](./verilog_style_guide.md) — Renesas ForgeFPGA / Yosys attributes, output enables, `inout`, and clocks
 
-##### Optional (but interesting) 
+### MCU & Tools
+- [Shrike CLI Guide (`mpremote`)](./shrike_cli_guide.md) — Flashing and running scripts from the terminal
+- [Platform-Agnostic Firmware Guide](./PLATFORM_AGNOSTIC_FIRMWARE_GUIDE.md) — Writing one sketch/script for RP2040, RP2350, and ESP32-S3
 
- 7. [CLI Guide](./shrike_cli_guide.md)
+### Examples & Resources
+- [Examples Catalog](./examples.md) — Teaching examples organized by category and difficulty
+- [Reading List](./reading_list.md) — Curated FPGA learning resources and related open hardware
 
+## Building Locally
 
+```bash
+cd docs
+pip install -r requirements.txt
+make html
+# Or strict check (warnings as errors):
+make html-strict
+```
 
- These guide are made for aiding you in learning journey however onces you done go through these to get more in depth info. 
+## Renesas SLG47910 References
 
- * [Forge FPGA SLG47910 Datasheet](https://www.renesas.com/en/document/dst/slg47910-datasheet?r=25546631) 
- * [Go Configure Forge FPGA Workshop](https://www.renesas.com/en/document/gde/forgefpga-workshop-user-guide?r=25546631)
- * [Software Simulation Guide](https://www.renesas.com/en/document/mas/forgefpga-software-simulation-user-guide?r=25546631)
+- [ForgeFPGA SLG47910 Datasheet](https://www.renesas.com/en/document/dst/slg47910-datasheet?r=25546631)
+- [Go Configure ForgeFPGA Workshop User Guide](https://www.renesas.com/en/document/gde/forgefpga-workshop-user-guide?r=25546631)
+- [ForgeFPGA Software Simulation User Guide](https://www.renesas.com/en/document/mas/forgefpga-software-simulation-user-guide?r=25546631)
