@@ -15,7 +15,7 @@ I am here assuming that you have installed all the tools required if not check t
 
 We will create a LED Blinking Project for this guide and we will start by launching the Go Configure Software Hub.  
 
-### 1. Setup  
+## 1. Setup
 
 1. Launch the GO Configure Software Hub and move to the Forge FPGA tab under the Develop Tab. 
 
@@ -70,7 +70,7 @@ Check out this short video guide.
 </div>
 :::
 
-### 2. Design 
+## 2. Design
 
 Now we will how we can design a led_blink hardware. 
 
@@ -137,55 +137,29 @@ Now the next step will be to synthesize the verilog for doing so click the butto
 
 Now we will move to IO planning and bitstream generation. 
 
-### 3. IO Planning and PNR 
+## 3. I/O Planning and PNR
 
-Now that we have synthesized the verilog lets connect the signal to the Input outputs pins. Follow the command below to map the required pins.
+Now that we have synthesized the Verilog, let's connect the signals to the physical I/O pins:
 
- 1. Open the IO planner from the top bar in the software.
+1. Open the **I/O Planner** from the top bar in Go Configure Software Hub.
 
-<div align="center">
+   ![Opening the I/O Planner from the Go Configure toolbar](./images/bitstream_gen/io_planner.png)
 
- <img src="./images/bitstream_gen/io_planner.png" alt="shrike" width="90%">
+2. Map the clock signals first — filter the selection using the **CLK** and **OSC_ctrl** tabs, then map `clk` to `OSC_CLK` and `clk_en` to `OSC_EN`.
 
-</div>
+   ![Mapping clk to OSC_CLK and clk_en to OSC_EN in I/O Planner](./images/bitstream_gen/clk_io_map.png)
 
- 2. Now we will first map the clock pins , filter the selection by using CLK and OSC_ctrl tab.
+3. Map the LED output signals — filter to **GPIO** only (uncheck other groups). Because the onboard FPGA LED is on pin `16`, map `LED` to `GPIO16_OUT` and `LED_en` to `GPIO16_OE`.
 
- We have two clock related signal "clk" and "clk_en" map them to "OSC_CLK" and "OSC_EN" respectively.
+   ![Mapping LED to GPIO16_OUT and LED_en to GPIO16_OE in I/O Planner](./images/bitstream_gen/led_io_map.png)
 
-<div align="center">
+4. Save your I/O Planner settings and click **Generate Bitstream** in the bottom-left panel. Wait for the green checkmark indicating bitstream generation succeeded.
 
- <img src="./images/bitstream_gen/clk_io_map.png" alt="shrike" width="90%">
+   ![Bitstream generation completed with green checkmark](./images/bitstream_gen/bitstream_done.png)
 
-</div>
- 
-
- 3. Lets map the led out signals , filter the selection , select only the GPIO , un-tick all the other onces. 
-
- We have two signal related to led "LED" and "LED_en" as output, on shrike led is connected to pin number 16 we will connected these signals to "GPIO16_OUT"  and "GPIO16_OE" respectively.
-
-<div align="center">
-
- <img src="./images/bitstream_gen/led_io_map.png" alt="shrike" width="90%">
-
-</div>
-
- 4. IO planning has been done save the setting and press Generate Bitstream button in the left bottom . It will take some time to generate bitstream and you will see a green tick after its done. 
-
-<div align="center">
-
- <img src="./images/bitstream_gen/bitstream_done.png" alt="shrike" width="90%">
-
-</div>
-
- Congratulation's you have generated your first hardware. 
-
-
-
-> [!NOTE]
-> The bitstream file that you need to copy will be named as "FPGA_bitstream_MCU.bin" found in ffpga -> build -> bitstream folder in your project directory.  
-> If you copy any other file present in the bitstream folder the fpga wont be programmed.
-> You are free to change the name of this file however you please.
+:::{note}
+The bitstream file to upload to your Shrike board is named `FPGA_bitstream_MCU.bin` inside your project's `ffpga/build/bitstream/` directory. Do not upload other files from that folder, or the FPGA will not configure. You are free to rename `FPGA_bitstream_MCU.bin` after copying it.
+:::
 
 ## Next Steps
 

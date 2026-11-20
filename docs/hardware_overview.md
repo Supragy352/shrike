@@ -1,232 +1,178 @@
 (hardware_overview)=
 
-# Shrike - Hardware Overview
+# Shrike — Hardware Overview
 
-Shrike is a family low-cost, low-power, and easy-to-use FPGA development board that combines both the Renesas FPGA and microcontroller. It is designed for hobbyists, students, and professionals to explore and prototype FPGA-based designs with ease.
+Shrike is a family of low-cost, low-power, breadboard-friendly FPGA development boards combining a **Renesas ForgeFPGA SLG47910** with a host microcontroller. Choose your board variant below — your selection will sync automatically across other pages.
 
-The board features a variety of peripherals to support various applications. Some of the key features include:
+:::::{tab-set}
 
-
-::::{tab-set}
-:::{tab-item} Shrike/Shrike-lite
-
-## Hardware Features
-
-- Renesas FPGA with 1120 5 Input LUT's  
-- MCU - RP2350/RP2040  
-- PMOD Connector  
-- Reset Button  
-- Boot Select Button  
-- USB Type C for Power & Programming  
-- MCU User LED  
-- FPGA User LED  
-- 23 MCU GPIO  
-- 14 FPGA GPIO's  
-- 6 Bit FPGA MCU Link  
-- Bread Board Compatible  
-
----
-
-## GPIO's
-
-The Shrike Packed with User IO's I have 23 MCU IO's and 14 FPGA IO's all of which are 3.3V compatible.
-
-The Board also has Header for 3.3V and 5V Power Rails for powering external peripherals.
-
----
-
-## PMOD Connector
-
-The Shrike Board has a PMOD connector for connecting to various peripherals, the PMOD connector is 3.3 V Compatible
-
-> **Note:** All the pins on shrike are 3.3 V compatible supplying anything more than that will result in damage to IC's on board which are beyond repair.
-
----
-
-## Type C Port
-
-The Board has a USB type C connector for both programming and power.  
-Connect the board to a host PC using a type c cable and you are good to go.
-
----
-
-## User LED's
-
-The board has two user LED's one for the RP2350/RP2040 and one for the FPGA. The LED's are connected to GPIO pins of the respective chips.  
-The RP2350/RP2040 LED is connected to GPIO 04 and the FPGA LED is connected to GPIO 16.
-
-The LED's are active high meaning that when the GPIO pin is set to high the LED will turn on and when the GPIO pin is set to low the LED will turn off.
-
----
-
-## FLASH
-
-The Shrike Dev Board features a 32Mb/4MB QSPI based Flash memory which is connected to RP2350/RP2040. The part number for which is W25Q32JV. This flash is used to store the fpga bitstream and RP2350/RP2040 firmware.
-
----
-
-## Programming
-
-Both the IC on the board have separate programming models. The RP2040 can be programmed using MicroPython, Arduino or RPi's C SDK whereas the FPGA needs to be programmed using Verilog in the Renesas Go Configure hub.
-
----
-
-## Powering the Board
-
-The board can be powered using one of these two methods:
-
-1. The USB Type C port  
-2. Header 1 marked 5V and any of the GND pins on the board  
-
-> **Note:** The board can be powered using the USB Type C port or the header marked 5V. Do not power the board using both methods at the same time as this will damage the board.
-
-The voltage on the Type C and header both should be 5V only. The board has a voltage regulator that converts the 5V to 3.3V for the RP2350/RP2040 and the FPGA.
-
-The voltage on the PMOD connector is 3.3V.
-
-
-
-:::
-
-
-:::{tab-item} Shrike-fi
-
-
+::::{tab-item} Shrike / Shrike-lite
+:sync: shrike-rp
 
 ## Hardware Features
 
-- Renesas FPGA with 1120 5 Input LUT's  
-- MCU - ESP32S3  
-- PMOD Connector  
-- Reset Button  
-- Boot Select Button  
-- USB Type C for Power & Programming  
-- MCU User LED  
-- FPGA User LED  
-- 24 MCU GPIO  
-- 14 FPGA GPIO's  
-- 4 Bit FPGA MCU Link  
-- Bread Board Compatible  
+- Renesas ForgeFPGA SLG47910 with 1,120 5-input LUTs
+- Host MCU: RP2350 (**Shrike**) or RP2040 (**Shrike-lite**)
+- PMOD connector (3.3 V)
+- Reset button & Boot Select (`BOOTSEL`) button
+- USB Type-C for power and programming
+- 2 user LEDs (1 MCU LED, 1 FPGA LED)
+- 23 MCU GPIOs and 14 FPGA GPIOs
+- 6-bit FPGA–MCU interconnect link (+ EN and PWR control lines)
+- Breadboard-compatible form factor
 
----
+## GPIOs
 
-## GPIO's
-
-The Shrike-fi Packed with User IO's I have 24 MCU IO's and 14 FPGA IO's all of which are 3.3V compatible.
-
-The Board also has Header for 3.3V and 5V Power Rails for powering external peripherals.
-
----
+Shrike and Shrike-lite provide **23 MCU I/Os** and **14 FPGA I/Os**, all operating at **3.3 V logic**. The header also exposes 3.3 V and 5 V power rails for external peripherals.
 
 ## PMOD Connector
 
-The Shrike-fi Board has a PMOD connector for connecting to various peripherals, the PMOD connector is 3.3 V Compatible
+The onboard PMOD connector supports standard 3.3 V PMOD peripherals.
 
-> **Note:** All the pins on Shrike-fi are 3.3 V compatible supplying anything more than that will result in damage to IC's on board which are beyond repair.
+:::{warning}
+All I/O pins on Shrike and Shrike-lite (including the PMOD connector) are **3.3 V only** and are **not 5 V tolerant**. Supplying more than 3.3 V to any GPIO will permanently damage the onboard ICs.
+:::
 
----
+## USB Type-C Port
 
-## Type C Port
+The board includes a USB Type-C connector used for both power and programming. Connect the board to your host computer with a USB Type-C data cable.
 
-The Board has two USB type C connector for programming and power.  
-Connect the board to a host PC using a type c cable and you are good to go.
+## User LEDs
 
----
+The board provides two active-high user LEDs (driving the pin high turns the LED on; driving it low turns it off):
 
-## User LED's
+- **MCU LED (RP2350 / RP2040):** `GPIO 04`
+- **FPGA LED (SLG47910):** `GPIO 16`
 
-The board has two user LED's one for the ESP32S3 and one for the FPGA. The LED's are connected to GPIO pins of the respective chips.  
-The ESP32S3 LED is connected to GPIO 21 and the FPGA LED is connected to GPIO 16.
+## Flash Memory
 
-The LED's are active high meaning that when the GPIO pin is set to high the LED will turn on and when the GPIO pin is set to low the LED will turn off.
+Shrike and Shrike-lite feature a **32 Mb (4 MB) QSPI Flash** (`W25Q32JV`) connected to the RP2350 / RP2040. It stores both the microcontroller firmware and FPGA bitstream files.
 
----
+## Programming Model
 
-## WiFi and BLE
+Both ICs have independent programming flows:
 
-The Shrike-fi dev board with ESP32S3 supports 2.4 GHz, 802.11 b/g/n Wi-Fi 4 and Bluetooth 5 (LE).
-These are on-chip features of ESP32S3.
-
-## FLASH
-
-The Shrike Dev Board features a 32Mb/4MB QSPI based Flash memory which is connected to ESP32S3. The part number for which is W25Q32JV. This flash is used to store the fpga bitstream and firmware.
-
-The board also has optional 8MB PSRAM in the ESP32S3.
-
----
-
-##  Optional Add-On
-
-The Shrike-fi Dev also has two optional add on's hardware features. 
-
-### 1. PSRAM
-
-Shrike-fi can be equipped with an optional 8 MB PSRAM. Depending on the variant purchased, the PSRAM may come pre-soldered or left unpopulated. If you choose to buy without it soldered, you can add it later. The part number is **LY68L6400SLIT**, and the designator is **U10**.
-
-
-### 2. Batter Management System  
-
-Shrike-fi features an onboard battery management and charging circuit. However, in the base version, these parts are designated as do not place (DNP). A future version with these components pre-soldered will be available soon.
-
-In the meantime, we are providing the necessary details for all the parts if you wish to solder them yourself. 
-
-The complete BOM for the BMS and charging circuit is available in the table below. 
-
-
-| Designator        | Description                                                                 | Value     | Manufacturer Part Number | Case/Package | Quantity | Type       |
-|------------------|-----------------------------------------------------------------------------|-----------|--------------------------|--------------|----------|------------|
-| C9               | 100nF, 10V, X7R, ±10%, 0402, MLCC | 100nF     | CC0402KRX7R6BB104           |0402         | 1        | Capacitor  |
-| C10, C11, C12    | 10uF, 10V, X5R, ±10%, 0603, MLCC | 10uF      | CL10A106KP8NNNC          | 0603         | 3        | Capacitor  |
-| D9               | LED ORANGE 0603                                                             | ORANGE LED| XL-1608UOC-06            |0603         | 1        | LED        |
-| D10              | GREEN LED (LED)                       | GREEN LED | XL-1608UGC-04    |0603         | 1        | LED        |
-| J3               | 2P 1x2P 2.5mm 2.2A 1 Right Angle Through Hole ,P=2.5mm Headers| — | XY-XHB2.54-2A21        |  TH, P=2.5mm |  1        | Connector  |
-| R5               | Resistor - 100 ohm, 1%, 0402                                                | 100R      | RC0402FR-07100RL           |0402         | 1        | Resistor   |
-| R6, R7, R11, R12 | Resistor - 1 kohm, 1%, 0402                                                 | 1K        | RC0402FR-071KL           |0402         | 4        | Resistor   |
-| R8               | 402Ohm, ±1%, 62.5mW, 0402, Chip Resistor                                    | 402R      | 0402WGF4020TCE           |0402         | 1        | Resistor   |
-| R9               | Resistor - 0 ohm, 1%, 0402                                                  | 0R        | RC0402FR-070RL             |0402         | 1        | Resistor   |
-| R10              | 0Ohm,125mW, ±1%, 0805, Resistor                                             | 0R        | 0805W8F0000T5E           | 0805         | 1        | Resistor   |
-| U2               | Lithium Battery protection IC, SOT23-6 (4911) (DW01A) (C436931)             | DW01A     | DW01A                    |SOT23-6      | 1        | IC         |
-| U3               | POWER SWITCH IC [TPS2113ADRBR] (C354512)                                    | —         | TPS2113ADRBR             | VSON-8       | 1        | IC         |
-| U4               | Lithium Battery Charger, 1A, 5V, (3656) [TP4056] (SOP8)                     | —         | TP4056                   | SOP8         | 1        | IC         |
-| U5               | Dual N-Channel -20V 6A 1V @ 250uA [FS8205A]                                 | —         | FS8205A                  | TSSOP-8      | 1        | IC         |
-
-
-
----
-
-#### Part Designators 
-
-The complete out and pcb file's aren't open for Shrike-fi yet they will be open mid june. However to solder the above mentionded parts you can use this part Designators file available [here](./images/Shrike_fi_designator.pdf).
-
----
-
-> **Note:** Both of these add-ons are not placed in the base version of Shrike-fi. We will launch a board with these components pre-soldered soon. In the meantime, you can solder them yourself if you want these features.
-
----
-
-
-
-## Programming
-
-Both the IC on the board have separate programming models. The ESP32S3 can be programmed using MicroPython, Arduino or ESP-SDK whereas the FPGA needs to be programmed using Verilog in the Renesas Go Configure hub.
-
-
----
+- **Host MCU (RP2350 / RP2040):** Programmed using Arduino IDE (C/C++), MicroPython, CircuitPython, or the Raspberry Pi Pico C/C++ SDK.
+- **FPGA (SLG47910):** Designed in Verilog and synthesized into a `.bin` bitstream using **Renesas Go Configure Software Hub**, then loaded by the MCU over SPI.
 
 ## Powering the Board
 
-The board can be powered using one of these two methods:
+The board can be powered via **one** of two 5 V sources (regulated onboard down to 3.3 V for the MCU, FPGA, and PMOD connector):
 
-1. The USB Type C port  
-2. Header 1 marked 5V and any of the GND pins on the board  
+1. The **USB Type-C** port
+2. The **`5V` header pin** together with any **`GND`** pin
 
-> **Note:** The board can be powered using the USB Type C port or the header marked 5V. Do not power the board using both methods at the same time as this will damage the board.
-
-The voltage on the Type C and header both should be 5V only. The board has a voltage regulator that converts the 5V to 3.3V for the ESP32S3 and the FPGA.
-
-The voltage on the PMOD connector is 3.3V.
-
+:::{caution}
+**Never power the board simultaneously through USB Type-C and the `5V` header pin.** Applying both power sources at the same time can damage the board. Supply 5 V only to the `5V` input.
 :::
+
 ::::
 
+::::{tab-item} Shrike-fi
+:sync: shrike-fi
 
+## Hardware Features
+
+- Renesas ForgeFPGA SLG47910 with 1,120 5-input LUTs
+- Host MCU: Espressif **ESP32-S3** (2.4 GHz Wi-Fi 4 + Bluetooth 5 LE)
+- PMOD connector (3.3 V)
+- Reset button & Boot Select button
+- Dual USB Type-C connectors for power and programming
+- 2 user LEDs (1 MCU LED, 1 FPGA LED)
+- 24 MCU GPIOs and 14 FPGA GPIOs
+- 4-bit FPGA–MCU interconnect link (+ EN and PWR control lines)
+- Optional unpopulated footprints for 8 MB QSPI PSRAM and onboard Li-ion BMS
+- Breadboard-compatible form factor
+
+## GPIOs
+
+Shrike-fi provides **24 MCU I/Os** and **14 FPGA I/Os**, all operating at **3.3 V logic**. The header also exposes 3.3 V and 5 V power rails for external peripherals.
+
+## PMOD Connector
+
+The onboard PMOD connector supports standard 3.3 V PMOD peripherals.
+
+:::{warning}
+All I/O pins on Shrike-fi (including the PMOD connector) are **3.3 V only** and are **not 5 V tolerant**. Supplying more than 3.3 V to any GPIO will permanently damage the onboard ICs.
+:::
+
+## USB Type-C Ports
+
+Shrike-fi includes two USB Type-C connectors for programming and power. Connect the board to your host computer with a USB Type-C data cable.
+
+## User LEDs
+
+The board provides two active-high user LEDs (driving the pin high turns the LED on; driving it low turns it off):
+
+- **MCU LED (ESP32-S3):** `GPIO 21`
+- **FPGA LED (SLG47910):** `GPIO 16`
+
+## Wi-Fi and BLE
+
+Powered by the ESP32-S3, Shrike-fi natively supports **2.4 GHz 802.11 b/g/n Wi-Fi 4** and **Bluetooth 5 (LE)**.
+
+## Flash & Optional PSRAM
+
+Shrike-fi includes onboard QSPI Flash connected to the ESP32-S3 to store firmware and FPGA bitstreams (and an optional 8 MB QSPI PSRAM footprint).
+
+:::{note}
+The base version of Shrike-fi ships with the PSRAM and Battery Management System footprints unpopulated (DNP). You can solder these components yourself using the BOM and designator reference below.
+:::
+
+## Optional Add-Ons
+
+Shrike-fi includes footprints for two optional hardware add-ons:
+
+### 1. PSRAM (`U10`)
+
+Shrike-fi supports an optional **8 MB QSPI PSRAM**. Depending on the variant purchased, it may arrive pre-soldered or left unpopulated.
+
+- **Part Number:** `LY68L6400SLIT`
+- **PCB Designator:** `U10`
+
+### 2. Battery Management System (BMS)
+
+Shrike-fi includes an unpopulated onboard Li-ion battery charging and protection circuit (DNP on the base board). If you wish to populate it yourself, the complete BOM is listed below:
+
+| Designator | Description | Value | Manufacturer Part Number | Package | Qty | Type |
+| --- | --- | --- | --- | --- | --- | --- |
+| `C9` | 100nF, 10V, X7R, ±10%, 0402, MLCC | 100nF | `CC0402KRX7R6BB104` | 0402 | 1 | Capacitor |
+| `C10, C11, C12` | 10uF, 10V, X5R, ±10%, 0603, MLCC | 10uF | `CL10A106KP8NNNC` | 0603 | 3 | Capacitor |
+| `D9` | Orange LED 0603 | ORANGE LED | `XL-1608UOC-06` | 0603 | 1 | LED |
+| `D10` | Green LED 0603 | GREEN LED | `XL-1608UGC-04` | 0603 | 1 | LED |
+| `J3` | 2-pin 2.5mm right-angle through-hole header | — | `XY-XHB2.54-2A21` | TH, P=2.5mm | 1 | Connector |
+| `R5` | Resistor 100 ohm, 1%, 0402 | 100R | `RC0402FR-07100RL` | 0402 | 1 | Resistor |
+| `R6, R7, R11, R12` | Resistor 1 kohm, 1%, 0402 | 1K | `RC0402FR-071KL` | 0402 | 4 | Resistor |
+| `R8` | Resistor 402 ohm, ±1%, 62.5mW, 0402 | 402R | `0402WGF4020TCE` | 0402 | 1 | Resistor |
+| `R9` | Resistor 0 ohm, 1%, 0402 | 0R | `RC0402FR-070RL` | 0402 | 1 | Resistor |
+| `R10` | Resistor 0 ohm, ±1%, 125mW, 0805 | 0R | `0805W8F0000T5E` | 0805 | 1 | Resistor |
+| `U2` | Lithium Battery Protection IC (DW01A) | DW01A | `DW01A` | SOT23-6 | 1 | IC |
+| `U3` | Power Switch IC | — | `TPS2113ADRBR` | VSON-8 | 1 | IC |
+| `U4` | Lithium Battery Charger, 1A, 5V (TP4056) | — | `TP4056` | SOP8 | 1 | IC |
+| `U5` | Dual N-Channel -20V 6A MOSFET | — | `FS8205A` | TSSOP-8 | 1 | IC |
+
+### 3. Part Designators
+
+Use the [Shrike-fi Part Designators PDF](./images/Shrike_fi_designator.pdf) to locate the footprints when soldering the optional PSRAM or BMS parts.
+
+## Programming Model
+
+Both ICs have independent programming flows:
+
+- **Host MCU (ESP32-S3):** Programmed using Arduino IDE (C/C++), MicroPython, or ESP-IDF.
+- **FPGA (SLG47910):** Designed in Verilog and synthesized into a `.bin` bitstream using **Renesas Go Configure Software Hub**, then loaded by the MCU over SPI.
+
+## Powering the Board
+
+The board can be powered via **one** of two 5 V sources (regulated onboard down to 3.3 V for the ESP32-S3, FPGA, and PMOD connector):
+
+1. The **USB Type-C** port
+2. The **`5V` header pin** together with any **`GND`** pin
+
+:::{caution}
+**Never power the board simultaneously through USB Type-C and the `5V` header pin.** Applying both power sources at the same time can damage the board. Supply 5 V only to the `5V` input.
+:::
+
+::::
+
+:::::

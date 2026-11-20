@@ -40,10 +40,9 @@ The Arduino build system defines architecture macros at compile time based on th
 | Any RP2350 board | `ARDUINO_ARCH_RP2040` (same core) |
 | Any ESP32 board | `ARDUINO_ARCH_ESP32` |
 
-> **Note:** RP2350 uses the same `arduino-pico` core as RP2040 and defines the
-> same `ARDUINO_ARCH_RP2040` macro. If you ever need to distinguish between
-> RP2040 and RP2350 specifically, check for `PICO_RP2350` which is defined
-> only on RP2350 builds.
+:::{note}
+RP2350 uses the same `arduino-pico` core as RP2040 and defines the same `ARDUINO_ARCH_RP2040` macro. If you ever need to distinguish between RP2040 and RP2350 specifically, check for `PICO_RP2350`, which is defined only on RP2350 builds.
+:::
 
 ### Pattern 1 — Pin Definition Block
 
@@ -137,10 +136,9 @@ void setup() {
 }
 ```
 
-> **Why HSPI?** ESP32's default SPI bus (VSPI) is often shared with internal
-> flash. Using HSPI avoids the mutex crash that occurs when ShrikeFlash
-> tries to access SPI while FreeRTOS is managing the flash bus.
-> This was a real bug that was fixed during the ESP32 port of ShrikeFlash.
+:::{note}
+**Why HSPI?** ESP32's default SPI bus (VSPI) is often shared with internal flash. Using HSPI avoids the mutex crash that occurs when `ShrikeFlash` tries to access SPI while FreeRTOS is managing the flash bus.
+:::
 
 ### Pattern 3 — Distinguishing RP2040 from RP2350
 
@@ -198,7 +196,7 @@ void setup() {
 
 For complex examples with many platform differences, extract everything into a shared header:
 
-```
+```text
 firmware/
 ├── arduino-ide/
 │   ├── uart_sum.ino
@@ -255,9 +253,9 @@ void setup() {
 }
 ```
 
-> **When to use this:** If your `#ifdef` block exceeds ~20 lines in the main
-> sketch, extract it into a header. For simple examples (pin changes only),
-> keep it inline — the header adds a file without adding clarity.
+:::{tip}
+**When to use this:** If your `#ifdef` block exceeds ~20 lines in the main sketch, extract it into a header. For simple examples (pin changes only), keep it inline — the header adds a file without adding clarity.
+:::
 
 ---
 
@@ -358,8 +356,9 @@ def read_response():
     return None
 ```
 
-> **ESP32 UART note:** UART 0 on ESP32 is typically connected to the USB-REPL.
-> Always use UART 1 or UART 2 for FPGA communication on Shrike-fi.
+:::{note}
+**ESP32 UART note:** UART 0 on ESP32 is typically connected to the USB-REPL. Always use UART 1 or UART 2 for FPGA communication on Shrike-fi.
+:::
 
 ### Pattern 3 — SPI for FPGA Bitstream Flashing
 
@@ -442,7 +441,7 @@ else:
 
 For complex projects, extract the config into a shared module:
 
-```
+```text
 firmware/
 └── micropython/
     ├── uart_sum.py
@@ -517,8 +516,9 @@ while True:
         # process data ...
 ```
 
-> **When to use this:** When multiple scripts in the same project all need
-> platform config. For single-file examples, keep the config inline.
+:::{tip}
+**When to use this:** When multiple scripts in the same project all need platform config. For single-file examples, keep the config inline.
+:::
 
 ---
 
@@ -536,7 +536,7 @@ while True:
 
 Sometimes the firmware for RP2040 and ESP32 diverges significantly — different libraries, different APIs, different architecture. In that case, don't force a single file. Split into separate files:
 
-```
+```text
 firmware/
 ├── arduino-ide
 │   ├── uart_sum_rp2040.ino
@@ -550,7 +550,7 @@ firmware/
 
 ### Decision Flowchart
 
-```
+```text
 Does the firmware differ between RP2040 and ESP32?
 │
 ├── No  → Single file, no platform block needed
