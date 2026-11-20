@@ -39,7 +39,7 @@ myst_heading_anchors = 3
 # -- Options for HTML output -------------------------------------------------
 html_theme = 'sphinxawesome_theme'
 
-html_extra_path = ['images']
+html_static_path = ['_static']
 
 # -- Theme options -----------------------------------------------------------
 html_theme_options = {

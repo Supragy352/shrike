@@ -64,7 +64,7 @@ Check out this short video guide.
 :::{raw} html
 <div align="center">
   <video width="90%" controls>
-    <source src="bitstream_gen/go_config_launch.webm" type="video/webm">
+    <source src="_static/media/go_config_launch.webm" type="video/webm">
     Your browser does not support the video tag.
   </video>
 </div>
