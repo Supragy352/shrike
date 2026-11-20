@@ -1,80 +1,75 @@
 (verilog_style_guide)=
+(forgefpga_synthesis_reference)=
 
-# Verilog Style Guide for Shrike 
+# ForgeFPGA Verilog & Synthesis Reference
 
-The renesas go configure software is a little  different from the vivado or Quartus Prime if you have used them before you will have to take care of these few things while design verilog for the same. 
+Writing Verilog for the **Renesas ForgeFPGA SLG47910** in **Go Configure Software Hub** (which uses **Yosys** for synthesis) differs in a few important ways from Vivado or Quartus Prime. This reference covers the mandatory synthesis attributes, output-enable signals, bidirectional (`inout`) pin patterns, and clock-enable wiring required for Shrike FPGA designs.
 
-Just read the log below to know about it.  
+## Required Synthesis Attributes
 
+Yosys requires specific Verilog attributes in your **top-level module** so that ports map cleanly to physical pins and are preserved through synthesis optimization.
 
-## Synthesis attributes 
-Yosys used for synthesizing verilog for renesas forge fpga on shrike requires a few synthesis attributes to properly synthesis the design.
-These attribute's are related to module hierarchy input output ports and clk;
+| Attribute | Where to Use | Purpose |
+| --- | --- | --- |
+| `(* top *)` | Top-level `module` declaration | Marks the design's top-level module for the synthesizer. |
+| `(* iopad_external_pin, clkbuf_inhibit *)` | Top-level clock `input` port | Marks the external/oscillator clock input port on the top module. |
+| `(* iopad_external_pin *)` | Every top-level I/O port mapped to a pin | Preserves the port name and prevents Yosys from optimizing away top-level I/O signals. |
 
-The main attributes are 
+:::{note}
+Apply `(* iopad_external_pin *)` and `(* iopad_external_pin, clkbuf_inhibit *)` **only on the top-level module's ports**, not on internal submodules.
+:::
 
- 1. (* top *) -- This is identifier for top module, synthesizer will consider this modules as top module. 
+### Example Top-Level Module Header
 
- 2. (* iopad_external_pin, clkbuf_inhibit *) -- This should be used for the clk signal so that the yosys creates a clk buffer for this signals path. Use this in only top module. 
+```verilog
+(* top *) module i2c_blink #(
+    parameter I2C_SLAVE_ADR = 7'h32
+) (
+    (* iopad_external_pin, clkbuf_inhibit *) input  i_clk,
+    (* iopad_external_pin *)                 input  i_rst,
+    (* iopad_external_pin *)                 input  i_scl,
+    (* iopad_external_pin *)                 input  i_sda,
+    (* iopad_external_pin *)                 output o_sda,
+    (* iopad_external_pin *)                 output o_led,
 
- 3. (* iopad_external_pin *) -- This needs to be used for every signal that needs to be mapped to the gpio. This the yosys will know not to optimize it or change its name. Only use this for top level io's not in every module.
-
- An example of all of these used in a i2c top  
-
- ```
-(* top *) module  i2c_blink #( parameter I2C_SLAVE_ADR = 7'h32
-		  ) ( 
-		(* iopad_external_pin, clkbuf_inhibit *) input i_clk,
-		(* iopad_external_pin *) input i_rst,
-		(* iopad_external_pin *) input i_scl,
-		(* iopad_external_pin *) input i_sda,
-		(* iopad_external_pin *) output o_sda,
-		(* iopad_external_pin *) output o_led,
-		  
-		  // ouput enable signal 
-		(* iopad_external_pin *) output o_sda_oe,
-		(* iopad_external_pin *) output o_clk_en,
-		(* iopad_external_pin *) output o_led_en );
- ```
-
-
-## Output Enable 
-
-The GPIO core of renesas forge fpga requires a select signal for the io mux to select any pin as input or output.
-That is every output requires a output enable associated with it and this oe pin should be assigned to 1 whenever we wish to use that pin as output in cases where that pin is not bidirectional and will always be one then enable can be permanently assigned as well.
-
-![alt text](./images/output.png)
-
-In case of dedicated input signal you don't need enable the io's as they are by default set to input mode.
-
-
-## INOUT 
-
-The IDE does not directly support use of INOUT signal type like vivado and other software.
-So now the question arises how do to create a bidirectional signal.
-
-We will understand that with a example. Lets say you want to assign a signal named sda as bidirectional then we will to make to separate signal in the completer design they could be named anything but for simplicity lets name them 
-
-```
-    input i_sda;
-    output o_sda;
-    output o_sda_oe;
+    // Output enable and clock enable signals
+    (* iopad_external_pin *)                 output o_sda_oe,
+    (* iopad_external_pin *)                 output o_clk_en,
+    (* iopad_external_pin *)                 output o_led_en
+);
 ```
 
-and we will need a third select signal for the mux to switch between input or output . So whenever you require the pin to be output the o_sda_oe signal should be driven high and the corresponding output values should be assigned to o_sda. And for using it as input the o_sda_oe should be driven to low and the input value can be latched from the i_sda.
+## Output Enable (`_oe`) Signals
 
-![alt text](./images/inout.png)
+Each GPIO cell on the Renesas ForgeFPGA includes an I/O mux that selects between input and output mode. Because of this architecture:
 
+- **Dedicated inputs** do not need an enable signal (pins default to input mode).
+- **Every output pin** requires a paired output-enable (`_oe`) signal mapped to the corresponding `GPIOx_OE` port in the I/O Planner.
+- Drive the `_oe` signal high (`1'b1`) whenever the pin acts as an output. For unidirectional outputs that are always driven, assign the enable permanently to `1'b1`.
 
-## clock enable 
+![ForgeFPGA GPIO output cell showing data output and output-enable select mux](./images/output.png)
 
-The fpga has a internal oscillator connected to the logic fabric and it gives out 50 Mhz clock.
+## Bidirectional (`inout`) Pins
 
-However top module of our design need to have a clock_enable signal for enabling in general cases this signal will always be one. 
-Thus this is just a output signal assigned to one in the top module of the design.
+Go Configure Software Hub does not directly synthesize Verilog `inout` port types the way Vivado or Quartus do. Instead, split every bidirectional pin (such as I2C `SDA`) into three separate top-level signals:
 
-![alt text](./images/clk.png)
+```verilog
+(* iopad_external_pin *) input  i_sda;     // Input path (GPIOx_IN)
+(* iopad_external_pin *) output o_sda;     // Output path (GPIOx_OUT)
+(* iopad_external_pin *) output o_sda_oe;  // Output enable (GPIOx_OE)
+```
 
+- Drive `o_sda_oe = 1'b1` when outputting data onto the pin via `o_sda`.
+- Drive `o_sda_oe = 1'b0` to release the pin to input mode and read incoming data from `i_sda`.
 
+![ForgeFPGA bidirectional GPIO cell showing split input, output, and output-enable signals](./images/inout.png)
 
+## Internal Oscillator Clock Enable (`clk_en`)
 
+The SLG47910 ForgeFPGA includes an internal **50 MHz oscillator** routed to the logic fabric. To activate it, expose a clock-enable output signal on your top-level module (mapped to `OSC_EN` in the I/O Planner) and drive it high (`1'b1`) whenever the oscillator should run:
+
+```verilog
+assign o_clk_en = 1'b1;
+```
+
+![ForgeFPGA internal oscillator block showing OSC_EN clock enable and OSC_CLK output](./images/clk.png)
