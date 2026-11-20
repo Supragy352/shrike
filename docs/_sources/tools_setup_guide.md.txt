@@ -1,0 +1,98 @@
+(tools_setup_guide)=
+
+# Setting Up the Tools for Shrike
+
+Because Shrike combines an **FPGA** (Renesas ForgeFPGA SLG47910) with a **host microcontroller** (RP2040, RP2350, or ESP32-S3), you will install two pieces of software on your computer:
+
+| Purpose | Tool | When You Need It |
+| --- | --- | --- |
+| **MCU Firmware & FPGA Flashing** | Arduino IDE **or** Thonny IDE **or** CLI (`mpremote` / `esptool`) | Required immediately for [Getting Started](./getting_started.md) |
+| **FPGA Verilog & Bitstream Generation** | Renesas Go Configure Software Hub | Required when building custom Verilog designs in [Generating Your First Bitstream](./generating_your_first_bitstream.md) |
+
+:::{tip}
+Want to test your board immediately with a pre-built LED blink bitstream? Install your preferred **MCU tool** below first, complete [Getting Started](./getting_started.md), and come back to install Go Configure Software Hub when you are ready to write Verilog.
+:::
+
+## 1. Renesas Go Configure Software Hub (FPGA Development)
+
+**Go Configure Software Hub** is a free tool from Renesas used to synthesize Verilog and generate bitstreams for the SLG47910 ForgeFPGA. Downloading it requires a free Renesas account.
+
+1. Open the [Go Configure Software Hub download page](https://www.renesas.com/en/software-tool/go-configure-software-hub).
+
+   ![Renesas Go Configure Software Hub landing page](./images/tools_setup/goconfig_landing_page.png)
+
+2. Scroll to the downloads section and select the installer for your operating system.
+
+   ![Selecting the Go Configure Software Hub installer for your operating system](./images/tools_setup/software_OS.png)
+
+3. When prompted to sign in or register, click **Register** if you do not already have a Renesas account.
+
+   ![Renesas account sign-in and registration prompt](./images/tools_setup/renesas_login.png)
+
+4. Complete the registration form and verify your email address.
+
+   ![Renesas new account registration form](./images/tools_setup/renesas_register.png)
+
+5. Return to the software page, click your OS download link again, and sign in with your new credentials to start the download.
+6. Run the installer on your computer.
+
+## 2. MCU Development Environment
+
+Choose **one** of the following workflows to program the host microcontroller and upload bitstreams to Shrike. You can switch between them at any time.
+
+::::{tab-set}
+
+:::{tab-item} Arduino IDE (C/C++)
+:sync: mcu-arduino
+
+Download and install **Arduino IDE 2.x** from the [official Arduino Software page](https://www.arduino.cc/en/software/).
+
+On Ubuntu/Debian Linux, you can also install it via APT (or use the official AppImage from the link above for the latest 2.x release):
+
+```bash
+sudo apt install arduino
+```
+
+Board packages, LittleFS upload plugin, and the Shrike library are configured in the [Getting Started — Arduino IDE](./getting_started.md) walkthrough.
+
+:::
+
+:::{tab-item} Thonny IDE (MicroPython / CircuitPython)
+:sync: mcu-python
+
+**Thonny** is a beginner-friendly Python IDE recommended for MicroPython and CircuitPython boards (RP2040, RP2350, and ESP32-S3).
+
+1. Visit [thonny.org](https://thonny.org/) and download the installer for your operating system.
+
+   ![Thonny IDE official download page](./images/tools_setup/thonny.png)
+
+2. Install Thonny. On Debian, Ubuntu, Mint, or Raspberry Pi OS, you can also install via APT:
+
+   ```bash
+   sudo apt install thonny
+   ```
+
+:::
+
+:::{tab-item} Command Line (mpremote / esptool)
+:sync: mcu-cli
+
+If you prefer working from the terminal, install Python 3 and create a virtual environment (see the [Python `venv` documentation](https://docs.python.org/3/library/venv.html)), then install the CLI tools you need:
+
+```bash
+# For MicroPython file transfer & REPL (all boards)
+pip install mpremote
+
+# For flashing MicroPython firmware onto Shrike-fi (ESP32-S3)
+pip install esptool
+```
+
+See the [Shrike CLI Guide](./shrike_cli_guide.md) for terminal usage after flashing your board's MicroPython firmware.
+
+:::
+
+::::
+
+## Next Step
+
+With your tools installed, continue to **[Getting Started (Blink LED)](./getting_started.md)** to flash your board and blink the onboard FPGA LED using a pre-built bitstream.

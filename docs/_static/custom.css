@@ -1,0 +1,126 @@
+/* Shrike Documentation — Subtle Theme Polish (Light + Dark mode) */
+
+/* --- Sphinx Design Cards & Tabs: Harmonize with sphinxawesome_theme --- */
+:root {
+  --sd-color-card-background: #ffffff;
+  --sd-color-card-border: #e5e7eb;
+  --sd-color-card-border-hover: #2563eb;
+  --sd-color-card-header: transparent;
+  --sd-color-card-footer: #f9fafb;
+  --sd-color-tabs-label-active: #2563eb;
+  --sd-color-tabs-underline-active: #2563eb;
+  --sd-color-tabs-label-hover: #1d4ed8;
+  --sd-color-tabs-underline-hover: #93c5fd;
+  --sd-color-tabs-overline: #e5e7eb;
+  --sd-color-tabs-underline: #e5e7eb;
+}
+
+html.dark {
+  --sd-color-card-background: #18181b;
+  --sd-color-card-border: #27272a;
+  --sd-color-card-border-hover: #60a5fa;
+  --sd-color-card-text: #e4e4e7;
+  --sd-color-card-header: transparent;
+  --sd-color-card-footer: #1f1f23;
+  --sd-color-tabs-label-active: #60a5fa;
+  --sd-color-tabs-label-inactive: #a1a1aa;
+  --sd-color-tabs-label-hover: #93c5fd;
+  --sd-color-tabs-underline-active: #60a5fa;
+  --sd-color-tabs-underline-hover: #3b82f6;
+  --sd-color-tabs-overline: #27272a;
+  --sd-color-tabs-underline: #27272a;
+}
+
+/* Card polish */
+.sd-card {
+  border-radius: 10px !important;
+  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.sd-card.sd-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08) !important;
+}
+
+html.dark .sd-card.sd-card-hover:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35) !important;
+}
+
+.sd-card-title {
+  font-weight: 600 !important;
+  font-size: 1.05rem !important;
+}
+
+.sd-card-footer {
+  font-size: 0.86rem;
+  border-bottom-left-radius: 9px;
+  border-bottom-right-radius: 9px;
+}
+
+.shrike-nav-grid .sd-card-body p:last-child {
+  margin-bottom: 0;
+  margin-top: 0.6rem;
+}
+
+.shrike-nav-grid .sd-card-body p:last-child em {
+  font-style: normal;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #2563eb;
+}
+
+html.dark .shrike-nav-grid .sd-card-body p:last-child em {
+  color: #60a5fa;
+}
+
+/* Board comparison grid spacing */
+.shrike-board-grid,
+.shrike-nav-grid {
+  margin-top: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+/* --- Content Images & Diagrams --- */
+article img {
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  max-width: 100%;
+  height: auto;
+}
+
+/* Keep SVG diagrams readable on dark backgrounds */
+html.dark article img[src$=".svg"] {
+  background-color: #ffffff;
+  padding: 0.75rem;
+  border-color: #27272a;
+}
+
+.shrike-hero-diagram {
+  margin: 1.5rem auto 2rem;
+  display: block;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+}
+
+/* --- Embedded Video Wrapper --- */
+.shrike-video-wrap {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.shrike-video-wrap video {
+  width: 92%;
+  max-width: 960px;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+}
+
+/* --- Tab Set Spacing --- */
+.sd-tab-set {
+  margin-top: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.sd-tab-content {
+  padding-top: 1rem !important;
+}
