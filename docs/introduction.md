@@ -1,40 +1,37 @@
 (introduction)=
 
-# Introduction to Shrike Project 
+# Introduction to Shrike
 
-Hello! So you’ve got the **Shrike** - nice!
+Welcome to **Shrike** — a family of low-cost, breadboard-friendly development boards that combine a **host microcontroller (MCU)** and an **FPGA** on a single board.
 
-Before we explain how programming works on Shrike, it’s important to understand what Shrike actually is and how it differs from all kind of other embedded development boards. 
+If you are new to FPGAs or embedded systems, this page gives you the mental model behind Shrike. If you already know the basics, you can jump straight to [Tools Setup](./tools_setup_guide.md) or [Getting Started (Blink LED)](./getting_started.md).
 
-These points will give you the right foundation, especially if you are new to electronics or computing systems. If you already know the basics of microcontroller, FPGAs, and embedded systems, you can skip this introduction and jump directly into the programming section.
+## Two Worlds on One Board
 
-Shrike is special because it combines two worlds on a single board: 
- 
-&emsp;**A Microcontroller (MCU)** — Raspberry Pi’s RP2350/RP2040 (Shrike & Shrike-lite) or ESP32-S3 (Shrike-fi) 
+Every board in the Shrike family pairs the same **Renesas ForgeFPGA SLG47910** (1,120 5-input LUTs) with a host microcontroller:
 
-&emsp;**An FPGA (Field-Programmable Gate Array)**
+- **Microcontroller (MCU)** — runs sequential firmware (Arduino C/C++, MicroPython, or CircuitPython):
+  - **Shrike-lite:** Raspberry Pi RP2040
+  - **Shrike:** Raspberry Pi RP2350
+  - **Shrike-fi:** Espressif ESP32-S3 (adds Wi-Fi 4 and BLE 5)
+- **FPGA (Field-Programmable Gate Array)** — implements custom digital hardware circuits written in Verilog.
 
-You can write software for the micro-controller and create digital circuits on the FPGA, and then let them work together to build powerful and fun projects. If you’re curious to learn more about FPGAs, you can read about them from resources listed [here](./reading_list.md).
+If you would like background reading on digital logic and FPGAs, see the [Reading List](./reading_list.md).
 
-In Shrike, the micro-controller is connected to the FPGA through an SPI bus. The SPI bus is used for two main purposes:
+## How the MCU and FPGA Work Together
 
-&emsp;1. **Configuring the FPGA** - loading the bitstream into the FPGA via the RP2040/RP2350.
+On Shrike, the host MCU is connected to the FPGA over an internal **SPI bus** that serves two roles:
 
-&emsp;2. **Communication** - between the microcontroller and the FPGA.
+1. **Configuring the FPGA** — The MCU reads a compiled binary file called a **bitstream** (`.bin`) from its flash storage and loads it into the FPGA over SPI.
+2. **Runtime Communication** — Once configured, the MCU and FPGA can exchange data back and forth over the interconnect pins.
 
-While your program is running on the micro-controller, you can configure the FPGA at any time to perform specific tasks. Not only that, once the FPGA is programmed, it can also communicate with the MCU back and forth.
+Because the FPGA is SRAM-configured by the MCU, you can reprogram it as many times as you like — even dynamically swapping hardware designs at runtime from your microcontroller code.
 
-The beauty of this setup is that you can reprogram the FPGA an unlimited number of times, and that’s exactly where reconfigurable computing comes to life.
+## Recommended Onboarding Path
 
-As discussed earlier, we’ll need to learn how compilation works for both systems: the FPGA and the micro-controller .
+Follow the guides in this order to go from unboxing to your own custom FPGA hardware:
 
-The binary files that the FPGA understands are called **bitstreams**.  
-
-Follow the guide here to learn how to generate a bitstream for the FPGA: 
- [Generating Your First Bitstream](https://vicharak-in.github.io/shrike/generating_your_first_bitstream.html)
-
-Once you have the bitstream, you’re ready to load it into the FPGA through a microcontroller program.
-
-We’ll start with a simple blink-LED example to say hello to the world of hardware.  
-
-Along the way, we’ll also set up the required software and toolchain.
+1. **[Tools Setup](./tools_setup_guide.md)** — Install the host software you need (MCU IDE/CLI + Renesas Go Configure Software Hub).
+2. **[Getting Started (Blink LED)](./getting_started.md)** — Flash Shrike firmware and run a pre-built LED blink bitstream to verify your board works.
+3. **[Generating Your First Bitstream](./generating_your_first_bitstream.md)** — Write Verilog, synthesize it in Go Configure Software Hub, map I/O pins, and flash your own `.bin` file.
+4. **[ForgeFPGA Verilog & Synthesis Reference](./verilog_style_guide.md)** — Learn the synthesis attributes and pin rules required for larger designs.

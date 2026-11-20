@@ -2,30 +2,23 @@
 
 # Getting Started
 
-In this getting started guide we will see how to blink an led on shrike both on fpga and MCU.
+In this guide, you will flash Shrike's host microcontroller and blink the onboard FPGA LED using a pre-built bitstream (`led_blink.bin`).
 
-You can program the microcontroller on Shrike using three methods:<br>
+:::{note}
+If you have not installed Arduino IDE, Thonny IDE, or `esptool` yet, complete **[Tools Setup](./tools_setup_guide.md)** first.
+:::
 
-&emsp;**1. Arduino (C/C++)**  
-&emsp;**2. MicroPython**
-&emsp;**3. Circuit-Python**
+You can program the host microcontroller on Shrike using three beginner-friendly environments — choose your preferred tab below (you can switch between them anytime):
 
-All are beginner-friendly, and you can switch between them anytime.  
-
-Let's follow the steps and get Shrike up and running!
+1. **Arduino IDE (C/C++)**
+2. **MicroPython**
+3. **CircuitPython**
 
 :::::::{tab-set}
 
-::::::{tab-item} ArduinoIDE
+::::::{tab-item} Arduino IDE
 
-# Shrike with ArduinoIDE
-
-If you already know Arduino and love working with the Arduino IDE, you can continue using it with Shrike. You do not have to switch to MicroPython unless you want to.
-
-We will follow these steps to setup our arduino IDE for shrike. If you don't have arduino IDE already ,you can download it from [here](https://www.arduino.cc/en/software/) or if you are using linux(ubuntu)then just run 
-```
-sudo apt install arduino
-```
+If you already know Arduino and prefer working in **Arduino IDE 2.x**, follow the steps below to add board support, LittleFS upload support, and the Shrike library. (Need Arduino IDE? See [Tools Setup](./tools_setup_guide.md).)
 
 ### Step 1. Adding the board support for Shrike
 
@@ -398,3 +391,7 @@ Save this file to your board and run it. (to run this file on board boot up just
 
 
 :::::::
+
+## Next Steps
+
+Now that you have verified your board with the pre-built `led_blink.bin` bitstream, continue to **[Generating Your First Bitstream](./generating_your_first_bitstream.md)** to write and synthesize your own Verilog design in Go Configure Software Hub.

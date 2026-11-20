@@ -1,81 +1,98 @@
 (tools_setup_guide)=
 
-# Setting Up the tools for Shrike
+# Setting Up the Tools for Shrike
 
-The shrike  features Reneasas Forge FPGA SLG47910 1120 Luts FPGA and RP2040/RP2350 microcontroller from Raspberry Pi.
+Because Shrike combines an **FPGA** (Renesas ForgeFPGA SLG47910) with a **host microcontroller** (RP2040, RP2350, or ESP32-S3), you will install two pieces of software on your computer:
 
- To work with Shrike you will need these 2 software.
+| Purpose | Tool | When You Need It |
+| --- | --- | --- |
+| **MCU Firmware & FPGA Flashing** | Arduino IDE **or** Thonny IDE **or** CLI (`mpremote` / `esptool`) | Required immediately for [Getting Started](./getting_started.md) |
+| **FPGA Verilog & Bitstream Generation** | Renesas Go Configure Software Hub | Required when building custom Verilog designs in [Generating Your First Bitstream](./generating_your_first_bitstream.md) |
 
-   1. Go Configure Software Hub (For Fpga Development)
-   2. Thonny IDE (For MCU).
+:::{tip}
+Want to test your board immediately with a pre-built LED blink bitstream? Install your preferred **MCU tool** below first, complete [Getting Started](./getting_started.md), and come back to install Go Configure Software Hub when you are ready to write Verilog.
+:::
 
-We will install these software on you host machine (computer) one by one.
+## 1. Renesas Go Configure Software Hub (FPGA Development)
 
-### 1. Setting Up the Go Configure Software Hub 
+**Go Configure Software Hub** is a free tool from Renesas used to synthesize Verilog and generate bitstreams for the SLG47910 ForgeFPGA. Downloading it requires a free Renesas account.
 
-Go configure software hub is a free to use tool from renesas however you would need to create a account and login on there website .
+1. Open the [Go Configure Software Hub download page](https://www.renesas.com/en/software-tool/go-configure-software-hub).
 
-Follow these step to get the software.
+   ![Renesas Go Configure Software Hub landing page](./images/tools_setup/goconfig_landing_page.png)
 
- 1. Open the Go Configure Software Hub page on browser of you choice. The page is linked [here](https://www.renesas.com/en/software-tool/go-configure-software-hub).
-   If this link is not working then google search the keywords " renesas go configure hub " and open the first link. You should land here. 
+2. Scroll to the downloads section and select the installer for your operating system.
 
-    <div align="center">
-    
-     <img src="./images/tools_setup/goconfig_landing_page.png" alt="Go Configure Software Hub" width="80%">
-    
-    </div>
+   ![Selecting the Go Configure Software Hub installer for your operating system](./images/tools_setup/software_OS.png)
 
- 2. Navigate on the page and click on the link respective to your operating software. 
-   
-     <div align="center">
-    
-     <img src="./images/tools_setup/software_OS.png" alt="Go Configure Software Hub" width="80%">
-    
-    </div>
+3. When prompted to sign in or register, click **Register** if you do not already have a Renesas account.
 
- 3. Now it will be asked for you to login or Register. We will have to Register click on the Register button.
+   ![Renesas account sign-in and registration prompt](./images/tools_setup/renesas_login.png)
 
-    <div align="center">
-    
-     <img src="./images/tools_setup/renesas_login.png" alt="Go Configure Software Hub" width="80%">
-    
-    </div>
+4. Complete the registration form and verify your email address.
 
- 4. Fill all the details here and there would be a email verification and after that your account is good to go.
+   ![Renesas new account registration form](./images/tools_setup/renesas_register.png)
 
-    <div align="center">
-    
-     <img src="./images/tools_setup/renesas_register.png" alt="Go Configure Software Hub" width="80%">
-    
-    </div>
+5. Return to the software page, click your OS download link again, and sign in with your new credentials to start the download.
+6. Run the installer on your computer.
 
- 5. Now to this the software page again and click the software link however this time login in with the generated credentials and you the software should start getting downloading if not click on the link onces again. 
+## 2. MCU Development Environment
 
- 6. Now install the software on my computer.
+Choose **one** of the following workflows to program the host microcontroller and upload bitstreams to Shrike. You can switch between them at any time.
 
-Congratulations you are one step near to FPGA Development. 
+::::{tab-set}
 
+:::{tab-item} Arduino IDE (C/C++)
+:sync: mcu-arduino
 
-### 2. Setting up Thonny IDE 
+Download and install **Arduino IDE 2.x** from the [official Arduino Software page](https://www.arduino.cc/en/software/).
 
-To work with RP2350/RP2040/ESP32-S3 side we will need thonny IDE it's officially recommended by the Raspberry pi. 
+On Ubuntu/Debian Linux, you can also install it via APT (or use the official AppImage from the link above for the latest 2.x release):
 
-Follow these steps get Thonny on you computer. 
+```bash
+sudo apt install arduino
+```
 
- 1. Visit the offical website linked [here](https://thonny.org/) or just search "thonny" and open first link on search engine. 
+Board packages, LittleFS upload plugin, and the Shrike library are configured in the [Getting Started — Arduino IDE](./getting_started.md) walkthrough.
 
-    <div align="center">
-    
-     <img src="./images/tools_setup/thonny.png" alt="Go Configure Software Hub" width="80%">
-    
-    </div>
+:::
 
- 2. Download the thonny for your OS. 
+:::{tab-item} Thonny IDE (MicroPython / CircuitPython)
+:sync: mcu-python
 
+**Thonny** is a beginner-friendly Python IDE recommended for MicroPython and CircuitPython boards (RP2040, RP2350, and ESP32-S3).
 
-Note : if you are on Debian, Raspbian, Ubuntu, Mint just Run `sudo apt install thonny` and you will be good to go. 
+1. Visit [thonny.org](https://thonny.org/) and download the installer for your operating system.
 
+   ![Thonny IDE official download page](./images/tools_setup/thonny.png)
 
+2. Install Thonny. On Debian, Ubuntu, Mint, or Raspberry Pi OS, you can also install via APT:
 
-Congratulations you now have all the tools that you require for developing with shrike. 
+   ```bash
+   sudo apt install thonny
+   ```
+
+:::
+
+:::{tab-item} Command Line (mpremote / esptool)
+:sync: mcu-cli
+
+If you prefer working from the terminal, install Python 3 and create a virtual environment (see the [Python `venv` documentation](https://docs.python.org/3/library/venv.html)), then install the CLI tools you need:
+
+```bash
+# For MicroPython file transfer & REPL (all boards)
+pip install mpremote
+
+# For flashing MicroPython firmware onto Shrike-fi (ESP32-S3)
+pip install esptool
+```
+
+See the [Shrike CLI Guide](./shrike_cli_guide.md) for terminal usage after flashing your board's MicroPython firmware.
+
+:::
+
+::::
+
+## Next Step
+
+With your tools installed, continue to **[Getting Started (Blink LED)](./getting_started.md)** to flash your board and blink the onboard FPGA LED using a pre-built bitstream.

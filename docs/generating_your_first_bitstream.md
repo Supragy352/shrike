@@ -187,6 +187,7 @@ Now that we have synthesized the verilog lets connect the signal to the Input ou
 > If you copy any other file present in the bitstream folder the fpga wont be programmed.
 > You are free to change the name of this file however you please.
 
-Now that you have generated your first bitstream let's upload these on the FPGA, that will be pretty simple follow the step 3-4 in this guide or complete guide if you checking it for first time [getting_started](./getting_started.md) . 
+## Next Steps
 
-Check out the [Verilog Style Guide](./verilog_style_guide.md) next.
+- **Flash your new bitstream:** Follow Step 4 in **[Getting Started (Blink LED)](./getting_started.md)** (or use the [Shrike CLI Guide](./shrike_cli_guide.md)) to load `FPGA_bitstream_MCU.bin` onto your Shrike board.
+- **Go deeper with ForgeFPGA Verilog:** Continue to the **[ForgeFPGA Verilog & Synthesis Reference](./verilog_style_guide.md)** to learn about synthesis attributes, output enables, and bidirectional (`inout`) pins.
