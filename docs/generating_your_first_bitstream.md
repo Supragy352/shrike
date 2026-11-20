@@ -1,111 +1,91 @@
 (generating_your_first_bitstream)=
 
-# Shrike FPGA Bitstream Generation Guide 
+# Shrike FPGA Bitstream Generation Guide
 
-Bitstream is a firmware that is used to programme the FPGA and map our design to it. Shrike uses a Renesas Forge FPGA SLGV SLG47910 1K Luts FPGA.The datasheet fr which can be found [here](https://www.renesas.com/en/products/slg47910) .
+A **bitstream** is the configuration file that programs the FPGA and maps your digital design onto its logic fabric. Shrike uses a **Renesas ForgeFPGA SLG47910** (1,120 5-input LUTs) — see the [SLG47910 product page and datasheet](https://www.renesas.com/en/products/slg47910).
 
+Generating a bitstream for Shrike follows three main stages:
 
-For generating the bitstream for shrike we will use these steps. 
+1. **Setup** — Create a new ForgeFPGA project in Go Configure Software Hub.
+2. **Design & Synthesis** — Write your Verilog module and synthesize it.
+3. **I/O Planning & PNR** — Map ports to physical pins and generate the `.bin` bitstream.
 
-  1. Setup 
-  2. Design & Synthesis 
-  3. IO Mapping and Placement and Routing (PNR)
+:::{note}
+This guide assumes you have already installed **Renesas Go Configure Software Hub**. If not, follow **[Tools Setup](./tools_setup_guide.md)** first.
+:::
 
-I am here assuming that you have installed all the tools required if not check tools_setup_guide [HERE](./tools_setup_guide.md).
-
-We will create a LED Blinking Project for this guide and we will start by launching the Go Configure Software Hub.  
+Below, we will create an **LED Blink** FPGA project from scratch.
 
 ## 1. Setup
 
-1. Launch the GO Configure Software Hub and move to the Forge FPGA tab under the Develop Tab. 
+1. Launch **Go Configure Software Hub** and open the **ForgeFPGA** tab under **Develop**.
 
-<div align="center">
+   ![Go Configure Software Hub showing the ForgeFPGA option under the Develop tab](./images/bitstream_gen/go_config_launch.png)
 
- <img src="./images/bitstream_gen/go_config_launch.png" alt="Go Configure Software Hub" width="90%">
+2. Double-click the **`SLG47910 (BB)`** device.
 
-</div>
+   :::{tip}
+   You can also open a ready-made LED blink project from the [`examples/`](https://github.com/vicharak-in/shrike/tree/main/examples) directory in the Shrike repository using **Open** in the bottom-right corner and selecting its `.ffpga` file.
+   :::
 
-2. Double click on the FPGA (SLG47910 (BB)) in our case.
-NOTE: You can also just open the led blink project available in the Projects section of github that can be done from the open option in the bottom right corner and then navigate to the ffpga file of that project. 
+   ![Selecting the SLG47910 (BB) ForgeFPGA device in Go Configure Software Hub](./images/bitstream_gen/fpga_selection.png)
 
-<div align="center">
+3. Choose a project name and directory location.
 
- <img src="./images/bitstream_gen/fpga_selection.png" alt="shrike" width="90%">
+   ![Choosing the project name and directory path in Go Configure](./images/bitstream_gen/project_path.png)
 
-</div>
+4. In the **Project Settings** dialog, select the first available option in each dropdown by clicking the arrow beside it so it matches the screenshot below.
 
-3. Now select the project name and project location of your choice. 
+   ![Configured Project Settings window for SLG47910 in Go Configure](./images/bitstream_gen/project_setting.png)
 
-<div align="center">
+5. Double-click the light blue **FPGA Core** block to open the Verilog editor (`main.v`). Setup is now complete.
 
- <img src="./images/bitstream_gen/project_path.png" alt="shrike" width="90%">
+   ![Empty main.v editor opened from the ForgeFPGA Core block](./images/bitstream_gen/empty_main.png)
 
-</div>
-
-4. Now you will see the "Project setting" window select the first values in each box by clicking the arrow beside it.
-It should look like this.
-
-<div align="center">
-
- <img src="./images/bitstream_gen/project_setting.png" alt="shrike" width="90%">
-
-</div>
-
-5. Double click on the light blue square (FPGA Core) in and you should see this window. Now you are done with setup lets design our blink led hardware.    
-
-<div align="center">
-
- <img src="./images/bitstream_gen/empty_main.png" alt="shrike" width="90%">
-
-</div>
-
-Check out this short video guide.
+Watch this short walkthrough of the setup steps above:
 
 :::{raw} html
-<div align="center">
-  <video width="90%" controls>
+<div class="shrike-video-wrap">
+  <video controls preload="metadata">
     <source src="_static/media/go_config_launch.webm" type="video/webm">
     Your browser does not support the video tag.
   </video>
 </div>
 :::
 
-## 2. Design
+## 2. Design & Synthesis
 
-Now we will how we can design a led_blink hardware. 
+Now let's design the `blink` hardware module in Verilog.
 
-So as of now we are aware that we need a led that should be blinked so lets declare that in verilog. 
+First, declare the LED output port. On ForgeFPGA, every physical output pin also requires an **output enable** (`_en`) signal — driving it high (`1'b1`) configures the pad as an output:
 
-```
-module led_blink (output led,
-                  output led_en);
+```verilog
+module led_blink (
+  output led,
+  output led_en
+);
 endmodule
 ```
 
-Now every output requires a output enable for forge FPGA thus we will define a led_en pin as well and we will keep it high ( value = 1) by default so that led signal ( IO) is always a output from the board.
+To toggle the LED once per second, we use the FPGA's onboard **50 MHz** internal oscillator (`clk`) and count `50_000_000` clock cycles per toggle.
 
-We need to figure out a way to so how are we going to blink ( toggle ) this led , for convenience lets assume we want to blink it every second . So this tell's us that we need some kind of clock to check the time and how much time has passed. 
+Here is the complete Verilog module for `main.v`:
 
-We have a clock on out FPGA it is a pulsating signal that creates a 50Mhz square wave, we have to use this to calculate one second to do so we can simply add a counter that counts till 50_000_000 cycles as that how much we will require to reach one second at a 50 Mhz frequency. 
-
-Thus now we will create a hardware that blinks a led whenever its counter reaches 50_000_000 and the verilog for this will look like this 
-
-
-```
+```verilog
 (* top *) module blink(
   (* iopad_external_pin, clkbuf_inhibit *) input clk,
   (* iopad_external_pin *) output LED,
   (* iopad_external_pin *) output LED_en,
   (* iopad_external_pin *) output clk_en
-  );
+);
 
   reg [31:0] counter;
   reg LED_status;
 
   assign LED_en = 1'b1;
   assign clk_en = 1'b1;
-  
-  always @ (posedge clk) begin
+
+  always @(posedge clk) begin
     counter <= counter + 1'b1;
     if (counter == 50_000_000) begin
       LED_status <= !LED_status;
@@ -115,27 +95,20 @@ Thus now we will create a hardware that blinks a led whenever its counter reache
 
   assign LED = LED_status;
 
-endmodule 
-
+endmodule
 ```
 
+:::{tip}
+Before writing larger Verilog designs for Shrike, check the **[ForgeFPGA Verilog & Synthesis Reference](./verilog_style_guide.md)** to learn how `(* top *)`, `(* iopad_external_pin *)`, and `(* clkbuf_inhibit *)` attributes work.
+:::
 
+Paste the code above into `main.v` inside Go Configure Software Hub:
 
+![Complete blink Verilog module entered in main.v inside Go Configure](./images/bitstream_gen/mainv_code.png)
 
-There are a lot other ways to blink an led as well and you can always use those however before writing verilog for shrike please checkout [Style Guide](./verilog_style_guide.md) for reference .
+Next, click **Synthesize** in the bottom-left panel. Synthesis typically takes a few seconds to a minute and displays a green checkmark when it completes without errors.
 
-However here we are assuming that you are using the code mentioned above . Get this code in the main.v in the software.
-
-<div align="center">
-
- <img src="./images/bitstream_gen/mainv_code.png" alt="shrike" width="90%">
-
-</div>
-
-Now the next step will be to synthesize the verilog for doing so click the button in the bottom left corner. It should take a minute and then you will a green tick beside it that should tell you that synthesis has happens without any error. 
-
-
-Now we will move to IO planning and bitstream generation. 
+Now you are ready for I/O planning and bitstream generation.
 
 ## 3. I/O Planning and PNR
 
