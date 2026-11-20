@@ -1,6 +1,6 @@
 (getting_started)=
 
-# Getting Started
+# Getting Started (Blink LED)
 
 In this guide, you will flash Shrike's host microcontroller and blink the onboard FPGA LED using a pre-built bitstream (`led_blink.bin`).
 
@@ -8,387 +8,244 @@ In this guide, you will flash Shrike's host microcontroller and blink the onboar
 If you have not installed Arduino IDE, Thonny IDE, or `esptool` yet, complete **[Tools Setup](./tools_setup_guide.md)** first.
 :::
 
-You can program the host microcontroller on Shrike using three beginner-friendly environments — choose your preferred tab below (you can switch between them anytime):
-
-1. **Arduino IDE (C/C++)**
-2. **MicroPython**
-3. **CircuitPython**
+Choose your preferred microcontroller environment below — all three are beginner-friendly and you can switch between them at any time.
 
 :::::::{tab-set}
 
-::::::{tab-item} Arduino IDE
+::::::{tab-item} Arduino IDE (C/C++)
+:sync: mcu-arduino
 
-If you already know Arduino and prefer working in **Arduino IDE 2.x**, follow the steps below to add board support, LittleFS upload support, and the Shrike library. (Need Arduino IDE? See [Tools Setup](./tools_setup_guide.md).)
+If you already know Arduino and prefer working in **Arduino IDE 2.x**, follow the steps below to configure board support, LittleFS upload support, and the Shrike library. (Need Arduino IDE? See [Tools Setup](./tools_setup_guide.md).)
 
-### Step 1. Adding the board support for Shrike
+## Step 1. Add Board Support
 
-The Shrike has a on board RP2040/RP2350/ESP32-S3 has a host controller the Arduino IDE doesn't native support them however we can add the board support for the same.
-
-It is quit straight forward we need to add this URL in the addition board URL section of arduino IDE which you can find in File->Preferences.
+Arduino IDE does not bundle RP2040, RP2350, or ESP32-S3 cores by default. Add the board manager URL for your Shrike variant under **File → Preferences → Additional Boards Manager URLs**:
 
 :::::{tab-set}
 
-::::{tab-item} Shrike/Shrike-lite
-:sync: Shrike/Shrike-lite
+::::{tab-item} Shrike / Shrike-lite
+:sync: shrike-rp
 
-```
+```text
 https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json
-``` 
+```
 
 ::::
 
 ::::{tab-item} Shrike-fi
-:sync: Shrike-fi
+:sync: shrike-fi
 
-```
+```text
 https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
-``` 
+```
 
 ::::
 
 :::::
 
+If you already have another URL listed, separate multiple URLs with a comma (`,`).
 
-If you already have another board URL just add a "," between the two URL's.
+![Adding the Shrike board manager URL in Arduino IDE Preferences](./images/shrike_arduino/board_URL.png)
 
-<div align="center">
-
- <img src="./images/shrike_arduino/board_URL.png" alt="ADD BOARD URL" width="90%">
-
-</div>
-
-
-
-These board support had been created by [earlephilhower](https://github.com/earlephilhower) and you can check out github [repository](https://github.com/earlephilhower/arduino-pico) for more details.
-
-After adding the URL go to Tools->Boards->Board Manager in the Arduino IDE. 
+Next, open **Tools → Board → Boards Manager**:
 
 :::::{tab-set}
 
-::::{tab-item} Shrike/Shrike-lite
-:sync: Shrike/Shrike-lite
+::::{tab-item} Shrike / Shrike-lite
+:sync: shrike-rp
 
-Then search for pico and the board from Earle F. Philhower. 
+Search for **pico** and install **Raspberry Pi Pico/RP2040/RP2350 by Earle F. Philhower, III** (see [earlephilhower/arduino-pico](https://github.com/earlephilhower/arduino-pico)).
 
-
-<div align="center">
-
- <img src="./images/shrike_arduino/board_manager.png" alt="ADD BOARD" width="90%">
-
-</div>
+![Installing the Earle Philhower RP2040/RP2350 board package in Arduino Boards Manager](./images/shrike_arduino/board_manager.png)
 
 ::::
 
 ::::{tab-item} Shrike-fi
-:sync: Shrike-fi
+:sync: shrike-fi
 
-Then search for ESP32 by Espressif Systems.
-
-<!-- TODO: Add board manager image for ESP32. -->
+Search for **ESP32** and install **esp32 by Espressif Systems**.
 
 ::::
 
 :::::
 
+## Step 2. Install the LittleFS Upload Tool
 
+On Shrike, the host MCU stores FPGA bitstreams in its onboard flash using the **LittleFS** filesystem and loads them into the FPGA at runtime.
 
-Perfect we have successfully add the board support for the Shrike.
+1. Download the latest release ZIP of [arduino-littlefs-upload](https://github.com/earlephilhower/arduino-littlefs-upload/releases).
+2. Follow the [Arduino IDE 2 LittleFS plugin installation guide](https://randomnerdtutorials.com/arduino-ide-2-install-esp32-littlefs/) (works for both RP2040/RP2350 and ESP32-S3 boards).
+3. Restart Arduino IDE. You can verify installation by opening the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and searching for **LittleFS**.
 
+For full plugin details, see the [arduino-littlefs-upload repository](https://github.com/earlephilhower/arduino-littlefs-upload).
 
-As we discussed earlier, in Shrike the micro-controller (RP/ESP32) is responsible for configuring the FPGA.  
+## Step 3. Install the Shrike Library
 
-To make this possible, we developed a simple mechanism: we store the FPGA bit-streams in the MCU's flash memory and retrieve them whenever we need to configure the FPGA. To do this we will need to use a file system called littleFS.
+Open **Library Manager** in Arduino IDE, search for **Shrike**, and install the official **Shrike** library developed by Vicharak.
 
-### Step 2. Adding the LittleFS Tool
+![Installing the Shrike library in Arduino IDE Library Manager](./images/shrike_arduino/shrike_lib.png)
 
-The LittleFS library in Arduino allows you to store, load, and update the bitstream in the flash memory through the microcontroller.
+## Step 4. Flash Your First FPGA Bitstream
 
-We need to add a Little-FS utility to bind a bin file (FPGA bitstream with code for Shrike). We can find the utility [here](https://github.com/earlephilhower/arduino-littlefs-upload/releases) download the latest release ZIP. 
-
-
-Now for setting up these tools for Arduino IDE version 2.x.x please follow [this](https://randomnerdtutorials.com/arduino-ide-2-install-esp32-littlefs/) guide and after proper setup please continue the below steps. 
-
-This works for both the RP2040 and ESP32-S3 based boards. ( even tho name says esp32).
-
-You will need to restart the Arduino IDE and you should see the Little FS tool like this in your Tools menu.
-
-<!-- TODO: Update this image. -->
-
-For more details on the LittleFS tool checkout this [repository](https://github.com/earlephilhower/arduino-littlefs-upload).
-
-
-
-### Step 3. Installing the Shrike Library 
-
-The Arduino library developed by Vicharak takes care of configuring the FPGA for you. You can install it directly from the Arduino IDE's Library Manager, just search for **"Shrike"** and install the **Shrike** library.
-
-
-<!-- TODO: Update this image --> 
-
-<div align="center">
-
- <img src="./images/shrike_arduino/shrike_lib.png" alt="ADD SHRIKE lib" width="90%">
-
-</div>
-
-We are almost done with the setup lets continue and blink en led on FPGA using the arduino IDE. 
-
-### Step 4. Programming the FPGA from ArduinoIDE
-
-Lets program out first bitstream to fpga using the arduino. We will be blinking an led.
-
-Start Arduino IDE and look for Shrike -> shrike_flash in the example section of IDE and then save it with a name of your choice and at a location of your choice. This will create a folder with the name, now in the folder/dir create a subfolder by name `data` keep the case in mind. 
-
-Any bitstream that needs to be uploaded to the board should be placed in the folder. 
-We have already generated and hosted a bitstream to blink led [here](https://github.com/vicharak-in/shrike/blob/main/test/bitstreams/v1_4/led_blink.bin) save this bitstream to the data subfolder.
-
-Checkout guide to learn how to generate your own fpga design [here](./generating_your_first_bitstream.md).
-
-Once you have done this, open Arduino IDE and click on Compile. The compilation should complete without any errors. If you encounter any errors, don't worry,we have a Discord community. Hop in there and we'll help you out or you can always use claude or chatgpt.
-
-If the compilation has been done without any error then it's time to connect the board in boot mode " PRESS THE BOOT BUTTON WHILE CONNECTING THE BOARD WITH PC" ( this should be done only the first time of setting up if arduino are if you have programmed the board with any other way last time).
+1. In Arduino IDE, open **File → Examples → Shrike → shrike_flash** and save a copy to a folder of your choice.
+2. Inside that saved sketch folder, create a subfolder named `data` (lowercase).
+3. Download the pre-built LED blink bitstream [`led_blink.bin`](https://github.com/vicharak-in/shrike/blob/main/test/bitstreams/v1_4/led_blink.bin) and place it inside the `data/` folder.
+4. Click **Verify (Compile)** to make sure the sketch builds without errors.
+5. Connect your board in bootloader mode (**hold the `BOOT` button while plugging in USB** — only needed on first Arduino flash or when switching from MicroPython/CircuitPython).
+6. Configure your board settings under **Tools**:
 
 :::::{tab-set}
 
-::::{tab-item} Shrike/Shrike-lite
-:sync: Shrike/Shrike-lite
+::::{tab-item} Shrike / Shrike-lite
+:sync: shrike-rp
 
-In the tools section select the Board as VICHARAK Shrike Lite / VICHARAK Shrike based on your board version and flash size as 4MB Sketch:2MB and FS:2MB and CPU Speed as 125 Mhz. 
+- **Board:** `VICHARAK Shrike Lite` or `VICHARAK Shrike`
+- **Flash Size:** `4MB (Sketch: 2MB, FS: 2MB)`
+- **CPU Speed:** `125 MHz`
 
 ::::
 
 ::::{tab-item} Shrike-fi
-:sync: Shrike-fi
+:sync: shrike-fi
 
-In the tools section select the Board as Generic ESP32-S3 based on your board version and flash size as 8MB Sketch:4MB and FS:4MB . 
-
-::::
-
-:::::
-Now you need to upload the file system to the board to do so press `ctrl+shift+p` you will see the drop down menu.
-
-Search for Build LittleFS command and run it. 
-
-After that in the same menu look for Upload LittleFS command and run that too. 
-
-If both of these options are executed properly then then hit upload. 
-
-You should see the beautiful blue led blinking on board.
-
-Congratulation you have your arduino IDE and shrike ready to be programmed using the Arduino infrastructure. 
-
-> Credit and Gratitude to [earlephilhower](https://github.com/earlephilhower/) for creating the board support for RP2040/RP2350 in ArduinoIDE and the little FS tool. 
-
-<!-- 
-For shrike Lite
-
-:::::{tab-set}
-
-::::{tab-item} Shrike/Shrike-lite
-:sync: Shrike/Shrike-lite
-
-Blehhhh Shrike-lite
-
-::::
-
-::::{tab-item} Shrike-fi
-:sync: Shrike-fi
-
-Blehh Shrike-fi
+- **Board:** `Generic ESP32-S3` (or matching ESP32-S3 variant)
+- **Flash Size:** `8MB (Sketch: 4MB, FS: 4MB)`
 
 ::::
 
 :::::
 
--->
+7. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`), run **Build LittleFS**, and then run **Upload LittleFS** to copy `data/led_blink.bin` to flash.
+8. Click **Upload** to flash the sketch. Once uploaded, the onboard blue FPGA LED should start blinking.
 
-::::::
-
-::::::{tab-item} Micro-python 
-
-# Shrike with Micro-python 
-
-We have created custom binary for shrike this contains a shrike.py library that has custom function to flash fpga and few other functions as well.
-
-
-
-### 1. Uploading the shrike binary
-
-:::::{tab-set}
-
-::::{tab-item} Shrike/Shrike-lite
-:sync: Shrike/Shrike-lite
-
-
-1. Download the binary corresponding to your board version from the shrike's [Releases](https://github.com/vicharak-in/shrike/releases/)
-2. Hold the boot button on the board and connect it the your pc now shrike will show up as as storage device.
-3. Copy the downloaded uf2 in storage device you can simply drag and drop in mostly all the devices. 
-4. After the successful copying the storage device should disappear.
-
-
-Check the video tutorial on how to upload the uf2 Shrike dev board(its a generic board video and uf2 will differ in our case) [here](https://www.youtube.com/watch?v=os4mv_8jWfU).
-
-Congratulations you have successfully uploaded the uf2. 
-
-#### Shrike Mass Storage Device 
-
-Onces that you have copied the uf2 to the Shrike.  The board will disconnect momentary and so up as both a mass storage device and tty/ACM device now the mass storage is the part where you would need to save you bitstream (read step 3). 
-
-The default device ID for mass storage device is `5221-0000` this could be changed as per your choice. 
-For windows simply right click and rename for changing the name in linux read [this](https://superuser.com/questions/223527/renaming-a-fat16-volume). 
-
-::::
-
-::::{tab-item} Shrike-fi
-:sync: Shrike-fi
-
-1. Download the binary corresponding to your board version from the shrike's [Releases](https://github.com/vicharak-in/shrike/releases/).
-
-2. Install the ESP tools `pip install esptool`. 
-    You might need to activate a python virtual environment. Check this guide to know how to do so. 
-
-3. Then execute  this command `python -m esptool erase_flash`
-
-4. And Flash the binary to ESP32-S3 using this command 
-
-```
-python -m esptool --chip esp32s3 -b 460800 --before default_reset --after hard_reset write_flash --flash_mode dio --flash_size 4MB --flash_freq 80m 0x0 firmware.bin
-```
-
----
-
-Congratulations you have successfully uploaded the binary. 
-
-::::
-
-:::::
-
-
-
-### 2. Get the bitstream(.bin) for led blink 
-
-To program a FPGA you will require  bitstream file this is much like a firmware for MCU's we will see how to generate these but for now we have uploaded the bitstream required for led_bin you can download them the corresponding to your board's version [here](https://github.com/vicharak-in/shrike/tree/main/test/bitstreams). 
-
-Now that you have both uf2 and bin file settled up lets move forward and upload the bitstream to board.
-
-### 3. Getting the Thonny IDE 
-
-The bitstream can be uploaded on the shrike using one of these two ways 
-   1. Using a GUI Based-IDE (Thonny)
-   2. Using Command line interface (CLI)
-
-In this guide we will use Thonny however guide to programme using CLI can be found [here](./shrike_cli_guide.md).
-
-Now we will need to get thonny on our pc. Installation is quite straight forward You can download it from [here](https://thonny.org/). 
-
-Now that we have got all the required tools set-ed up let blink some leds.
-
-Open thonny and connect the board to the laptop (do not press boot button this time). And do these two things 
-   1. Connect the board from the bottom right corner of Thonny IDE.
-   2. Go to file view mode in the thonny to see the RP2350/RP2040 as a file system.
-
-### 4. Flashing the bitstream 
-
-You should in thonny see both the your pc and Shrike file's on the left windows now we have to transfer the led_blink.bin file to the Shrike. 
-To do so find the file on your system then right click and upload.
-
-Now we will have to flash this file to the fpga to do so we will use the function 
-
-```
-    shrike.flash("<your_bitstream_name>.bin")
-```
-
-:::{note}
-
-For any custom project the bitstream file that you need to copy will be named as "FPGA_bitstream_MCU.bin" found in fpga -> build -> bitstream folder in your project directory.  
-If you copy any other file present in the bitstream folder the fpga wont be programmed.
-You are free to change the name of this file however you please.
-
+:::{tip}
+Credit and gratitude to [Earle F. Philhower, III](https://github.com/earlephilhower/) for maintaining `arduino-pico` and `arduino-littlefs-upload`. If you run into upload or compile issues, reach out on the [Vicharak Discord](https://discord.com/invite/EhQy97CQ9G).
 :::
 
-In thonny open a new python file and write this python script 
-
-```
-    import shrike
-    shrike.flash("led_blink.bin")
-```
-
-Save this file to your board and run it. (to run this file on board boot up just name it as main.py)
-
-
-
 ::::::
 
-::::::{tab-item} Circuit-Python 
+::::::{tab-item} MicroPython
+:sync: mcu-python
 
-# Shrike with Circuit Python
+Shrike uses a custom MicroPython firmware image that includes the built-in `shrike` module for flashing and resetting the FPGA.
 
-CircuitPython is a programming language designed by adafruit to simplify experimenting and learning to code on low-cost microcontroller boards. It build on a fork of Micropython , thus its seems very similar yet very different.
+## Step 1. Flash the Shrike MicroPython Firmware
 
-The way Circuit-Python works with Shrike is we have a custom circuit python build (binary). One must follow these steps to get started with the Circuit-Python on Shrike.
+:::::{tab-set}
 
-### 1. Uploading the Shrike binary
+::::{tab-item} Shrike / Shrike-lite
+:sync: shrike-rp
 
-1. Download the binary corresponding to your board version from the shrike's [Release](https://github.com/vicharak-in/shrike/releases/).
-2. Hold the boot button on the board and connect it the your pc now shrike will show up as as storage device.
-3. Copy the downloaded uf2 in storage device you can simply drag and drop in mostly all the devices. 
-4. After the successful copying the storage device should disappear.
+1. Download the `.uf2` firmware matching your board variant from [Shrike Releases](https://github.com/vicharak-in/shrike/releases/).
+2. Hold the **`BOOT`** button while connecting Shrike to your computer over USB. The board mounts as a USB mass-storage drive.
+3. Drag and drop the downloaded `.uf2` file onto that drive.
+4. The drive disconnects automatically once flashing finishes.
 
-
-Check the video tutorial on how to upload the uf2 Shrike dev board(its a generic board video and uf2 will differ in our case) [here](https://www.youtube.com/watch?v=os4mv_8jWfU).
-
-Congratulations you have successfully uploaded the Circuit-Python uf2. 
-
-### 2. Get the bitstream(.bin) for led blink 
-
-To program a FPGA you will require  bitstream file this is much like a firmware for MCU's we will see how to generate these but for now we have uploaded the bitstream required for led_bin you can download them the corresponding to your board's version [here](https://github.com/vicharak-in/shrike/tree/main/test/bitstreams). 
-
-Now that you have both uf2 and bin file settled up lets move forward and upload the bitstream to board.
-
-The board will showing up as a storage device on the pc now copy the downloaded bitstream to the board. 
-
-### 3. Getting the Thonny IDE 
-
-Now we will need to get thonny on our pc. Installation is quite straight forward You can download it from [here](https://thonny.org/). 
-
-Now that we have got all the required tools set-ed up let blink some leds.
-
-Open thonny and connect the board to the laptop (do not press boot button this time). And connect the board from the bottom right corner of Thonny IDE.
-
-### 4. Flashing the bitstream 
-
-The custom binary of circuit-python contain a python library for flashing and resting  the fpga and a few other functions as well. 
-
-
-So we will use this library to flash this bitstream file to the fpga, to do so we will use the function 
-
-```
-    shrike.flash("<your_bitstream_name>.bin")
-```
-
-If you are using the test bitstream provided by use it is named as led_blink.bin 
+Need a visual reference for UF2 drag-and-drop? See this [generic RP2040 UF2 flashing walkthrough](https://www.youtube.com/watch?v=os4mv_8jWfU).
 
 :::{note}
-
-For any custom project the bitstream file that you need to copy will be named as "FPGA_bitstream_MCU.bin" found in fpga -> build -> bitstream folder in your project directory.  
-If you copy any other file present in the bitstream folder the fpga wont be programmed.
-You are free to change the name of this file however you please.
-
+After flashing the `.uf2`, Shrike reconnects as both a serial (`ttyACM` / `COM`) device and a USB mass-storage device (default label `5221-0000`, which you can rename normally on Windows or via `fatlabel` on Linux).
 :::
 
-In thonny open a new python file and write this python script 
+::::
 
-```
-    import shrike
-    shrike.flash("led_blink.bin")
-```
+::::{tab-item} Shrike-fi
+:sync: shrike-fi
 
-Save this file to your board and run it. (to run this file on board boot up just name it as main.py)
+1. Download the ESP32-S3 `.bin` firmware from [Shrike Releases](https://github.com/vicharak-in/shrike/releases/).
+2. Install `esptool` (see [Tools Setup](./tools_setup_guide.md) or the [Python `venv` guide](https://docs.python.org/3/library/venv.html)):
 
+   ```bash
+   pip install esptool
+   ```
 
+3. Erase existing flash:
+
+   ```bash
+   python -m esptool erase_flash
+   ```
+
+4. Write the Shrike-fi MicroPython firmware:
+
+   ```bash
+   python -m esptool --chip esp32s3 -b 460800 --before default_reset --after hard_reset write_flash --flash_mode dio --flash_size 4MB --flash_freq 80m 0x0 firmware.bin
+   ```
+
+::::
+
+:::::
+
+## Step 2. Download the Test Bitstream
+
+Download the pre-built `led_blink.bin` matching your board revision from [`test/bitstreams`](https://github.com/vicharak-in/shrike/tree/main/test/bitstreams).
+
+## Step 3. Connect with Thonny IDE (or CLI)
+
+You can upload bitstreams and run MicroPython code either via **Thonny IDE** (below) or via the terminal using **`mpremote`** (see the [Shrike CLI Guide](./shrike_cli_guide.md)).
+
+1. Open **Thonny** (see [Tools Setup](./tools_setup_guide.md) if not yet installed) and connect Shrike over USB **without** holding `BOOT`.
+2. Select the MicroPython interpreter for your board in the bottom-right corner of Thonny.
+3. Open **View → Files** so you can see both your computer's files and Shrike's onboard filesystem.
+
+## Step 4. Upload and Flash the Bitstream
+
+1. In Thonny's **Files** pane, right-click `led_blink.bin` on your computer and choose **Upload to /**.
+2. Create a new Python script in Thonny:
+
+   ```python
+   import shrike
+
+   shrike.flash("led_blink.bin")
+   ```
+
+3. Save the script to your Shrike board and run it (name it `main.py` to auto-flash the FPGA on every boot). The onboard FPGA LED should start blinking.
+
+:::{note}
+When using your own custom Go Configure project, the bitstream file to copy is named `FPGA_bitstream_MCU.bin` inside your project's `ffpga/build/bitstream/` directory. You may rename the file after copying it, as long as you pass the same name to `shrike.flash(...)`.
+:::
 
 ::::::
 
+::::::{tab-item} CircuitPython
+
+CircuitPython (by Adafruit) is a beginner-friendly Python implementation closely related to MicroPython. Shrike provides a custom CircuitPython `.uf2` build with the built-in `shrike` FPGA library.
+
+## Step 1. Flash the Shrike CircuitPython Firmware
+
+1. Download the CircuitPython `.uf2` matching your board from [Shrike Releases](https://github.com/vicharak-in/shrike/releases/).
+2. Hold the **`BOOT`** button while connecting Shrike to your computer over USB.
+3. Drag and drop the `.uf2` file onto the mounted bootloader drive.
+4. Once copied, the drive unmounts and Shrike reboots as a CircuitPython mass-storage drive.
+
+Need a visual reference? See this [generic RP2040 UF2 flashing walkthrough](https://www.youtube.com/watch?v=os4mv_8jWfU).
+
+## Step 2. Copy the Test Bitstream
+
+1. Download `led_blink.bin` for your board revision from [`test/bitstreams`](https://github.com/vicharak-in/shrike/tree/main/test/bitstreams).
+2. Copy `led_blink.bin` directly onto Shrike's mounted USB drive.
+
+## Step 3. Connect with Thonny IDE
+
+1. Open **Thonny** (see [Tools Setup](./tools_setup_guide.md)) and connect Shrike over USB **without** holding `BOOT`.
+2. Select the **CircuitPython** interpreter from the bottom-right corner of Thonny.
+
+## Step 4. Flash the Bitstream
+
+Create a new Python script in Thonny:
+
+```python
+import shrike
+
+shrike.flash("led_blink.bin")
+```
+
+Save the file to your Shrike drive and run it (name it `code.py` or `main.py` to run automatically on boot).
+
+:::{note}
+When using your own custom Go Configure project, copy `FPGA_bitstream_MCU.bin` from your project's `ffpga/build/bitstream/` directory. You can rename it freely as long as the filename passed to `shrike.flash(...)` matches.
+:::
+
+::::::
 
 :::::::
 
