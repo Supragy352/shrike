@@ -59,6 +59,7 @@ We at vicharak have kept in mind need of a learner, maker and a hobbyist while d
    :titlesonly:
 
    Shrike CLI Guide (mpremote) <shrike_cli_guide>
+   Platform-Agnostic Firmware Guide <PLATFORM_AGNOSTIC_FIRMWARE_GUIDE>
 
 .. toctree::
    :maxdepth: 2
