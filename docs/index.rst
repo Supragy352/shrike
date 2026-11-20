@@ -29,21 +29,44 @@ We at vicharak have kept in mind need of a learner, maker and a hobbyist while d
    :align: center
 
 .. toctree::
-   :glob:
-   :caption: Contents
+   :maxdepth: 2
+   :caption: Getting Started
    :titlesonly:
 
    Introduction <introduction>
-   Hardware Overview <hardware_overview>
-   Getting Started <getting_started> 
    Tools Setup <tools_setup_guide>
-   Generating Bitstream <generating_your_first_bitstream>
-   Verilog Style Guide <verilog_style_guide>      
-   Shrike Pinouts <shrike_pinouts>
-   Shrike CLI Guide <shrike_cli_guide>
-   Examples <examples>
+   Getting Started (Blink LED) <getting_started>
+   Generating Your First Bitstream <generating_your_first_bitstream>
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Hardware Reference
+   :titlesonly:
+
+   Hardware Overview <hardware_overview>
+   Board Pinouts & Interconnect <shrike_pinouts>
+
+.. toctree::
+   :maxdepth: 2
+   :caption: FPGA Development
+   :titlesonly:
+
+   Verilog & Synthesis Guide <verilog_style_guide>
+
+.. toctree::
+   :maxdepth: 2
+   :caption: MCU & Tools
+   :titlesonly:
+
+   Shrike CLI Guide (mpremote) <shrike_cli_guide>
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Examples & Resources
+   :titlesonly:
+
+   Examples Catalog <examples>
    Reading List <reading_list>
-   
 
 .. note::
 
