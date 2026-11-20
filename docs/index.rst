@@ -51,7 +51,7 @@ We at vicharak have kept in mind need of a learner, maker and a hobbyist while d
    :caption: FPGA Development
    :titlesonly:
 
-   Verilog & Synthesis Guide <verilog_style_guide>
+   ForgeFPGA Verilog & Synthesis Reference <verilog_style_guide>
 
 .. toctree::
    :maxdepth: 2

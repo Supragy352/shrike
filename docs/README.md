@@ -17,7 +17,7 @@ This directory contains the Sphinx + MyST Markdown source files for the Shrike f
 - [Board Pinouts & Interconnect](./shrike_pinouts.md) — Pinout diagrams and FPGA–MCU interconnect tables
 
 ### FPGA Development
-- [Verilog & Synthesis Guide](./verilog_style_guide.md) — Renesas ForgeFPGA / Yosys attributes, output enables, `inout`, and clocks
+- [ForgeFPGA Verilog & Synthesis Reference](./verilog_style_guide.md) — Renesas ForgeFPGA / Yosys attributes, output enables, `inout`, and clocks
 
 ### MCU & Tools
 - [Shrike CLI Guide (`mpremote`)](./shrike_cli_guide.md) — Flashing and running scripts from the terminal
