@@ -26,7 +26,8 @@ This is a compilation of the resources and references suggested for Shrike and F
    
 
 ## 3. Communities to Join
-1. Vicharak
-2. ULX3S
-3. TinyVision
-4. 1bitsquared
+
+1. **Vicharak:** [Vicharak Discord](https://discord.com/invite/EhQy97CQ9G) · [Shrike GitHub](https://github.com/vicharak-in/shrike)
+2. **ULX3S:** [ULX3S Community Portal](https://ulx3s.github.io/) · [ULX3S Gitter](https://gitter.im/ulx3s/Lobby)
+3. **tinyVision.ai:** [pico-ice Docs & Discord](https://pico-ice.tinyvision.ai/) · [tinyVision.ai GitHub](https://github.com/tinyvision-ai-inc)
+4. **1BitSquared:** [1BitSquared Live Chat (Discord & IRC)](https://1bitsquared.com/pages/chat) · [iCEBreaker GitHub](https://github.com/icebreaker-fpga/icebreaker)
