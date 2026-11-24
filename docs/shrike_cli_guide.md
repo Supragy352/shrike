@@ -30,68 +30,73 @@ Now lets blink led from the terminal
 
 ## 2. Blinking the CPU LED
 
-To check out how mpremote works we will first blink the led connected to rp2040/rp2350 and then we will flash blink_led bitstream on fpga.
+To check out how `mpremote` works, we will first blink the LED connected to the RP2040/RP2350 and then flash the `led_blink.bin` bitstream onto the FPGA.
 
-To blink a led on rp2040/rp2350 the python script looks like this save this as a test_led.py file on your pc.
+To blink the onboard MCU LED on Shrike / Shrike-lite (RP2040 / RP2350), save the following Python script as `test_led.py` on your computer:
 
 ```python
 from machine import Pin
 import time
 
-led = Pin(4, Pin.OUT)  # onboard LED on GPIO 25
+led = Pin(4, Pin.OUT)  # Onboard MCU LED on GPIO 4 (Shrike / Shrike-lite)
 
 while True:
-led.toggle()   # switch state
-time.sleep(0.5)
+    led.toggle()       # Switch LED state
+    time.sleep(0.5)
 ```
-then we can run this file using the command 
+
+Run the script on the board with:
+
 ```bash
 mpremote run test_led.py
 ```
 
-if you have multiple shrike or rp2040 connected then you need to specify the port number of the board you want to programme something like 
+If you have multiple Shrike or RP2040 boards connected, specify the serial port explicitly:
 
 ```bash
 mpremote connect port:<port path> run test_led.py
 ```
-you should see the led blinking on shrike.
 
-You can also access the REPL on the rp2040 by running 
+You should see the onboard MCU LED blinking on Shrike.
+
+You can also open an interactive MicroPython REPL on the board by running:
 
 ```bash
 mpremote
 ```
-now you can python one line at a time. 
 
 ## 3. Uploading the Bitstream to Shrike
 
-To flash the fpga with bitstream we need to first upload it to the rp2040 to do that we need to simply run the cp command of mpremote. The bitstream file could be found [here](https://github.com/vicharak-in/shrike/tree/main/test/bitstreams/) get the one corresponding to your board version. 
+To flash the FPGA with a bitstream, first copy the `.bin` file to Shrike's onboard filesystem using `mpremote cp`. You can download the pre-built `led_blink.bin` matching your board revision from [`test/bitstreams`](https://github.com/vicharak-in/shrike/tree/main/test/bitstreams/).
 
 ```bash
-mpremote cp blink_led.bin :
+mpremote cp led_blink.bin :
 ```
-do not forget the : in the end . Now just run the cmd below to check if the file is copied or not
+
+:::{note}
+Do not omit the trailing `:` — it tells `mpremote` to copy the file onto the board's root filesystem.
+:::
+
+Verify the file was copied:
+
 ```bash
 mpremote ls
 ```
-lets flash that bitstream to the fpga now.
-
 
 ## 4. Flashing the FPGA
 
-To flash the uploaded bitstream we need to execute this python script 
+To load the uploaded bitstream into the FPGA, run the following Python script:
 
 ```python
 import shrike
 
 # shrike.flash("<bitstream_name>.bin")
-# in our case that is
-
-shrike.flash("blink_led.bin")
+shrike.flash("led_blink.bin")
 ```
-now you can run this cmd as mentioned in step 2 or you can open the repl and type the python script one by one.
 
-Onces the fpga is flashed you should see the led connected to fpga blinking.
+You can run this script with `mpremote run` as in Step 2, or open the REPL with `mpremote` and enter the lines interactively.
+
+Once the FPGA is flashed, you should see the onboard FPGA LED blinking.
 
 The mpremote has a lot more features as well you can check them all out in there guide [here](https://docs.micropython.org/en/latest/reference/mpremote.html#).
 

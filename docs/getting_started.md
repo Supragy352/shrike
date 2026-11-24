@@ -239,7 +239,7 @@ import shrike
 shrike.flash("led_blink.bin")
 ```
 
-Save the file to your Shrike drive and run it (name it `code.py` or `main.py` to run automatically on boot).
+Save the file to your Shrike drive as `code.py` so CircuitPython runs it automatically on boot (or run it directly from Thonny).
 
 :::{note}
 When using your own custom Go Configure project, copy `FPGA_bitstream_MCU.bin` from your project's `ffpga/build/bitstream/` directory. You can rename it freely as long as the filename passed to `shrike.flash(...)` matches.
