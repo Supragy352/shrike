@@ -1,32 +1,26 @@
 (shrike_cli_guide)=
 
-# User guide to access and use shrike from your terminal(CLI)
+# Shrike CLI Guide (`mpremote`)
 
-If you are anything like our team at [vicharak](https://vicharak.in) and you don't want to move away from the terminal. We have got you cover here is a quick guide for accessing and using shrike from terminal (CLI). 
+If you prefer staying in the terminal like our team at [Vicharak](https://vicharak.in), you can upload files, run MicroPython scripts, and flash FPGA bitstreams to Shrike directly from the command line using MicroPython's official **`mpremote`** tool.
 
-To do so we will be using mpremote feature of micro-python.
+:::{note}
+Before using the CLI workflow, flash the Shrike MicroPython firmware onto your board by following Step 1 in **[Getting Started (Blink LED)](./getting_started.md)**.
+:::
 
-Before getting started with accessing the shrike over terminal you should upload the shrike uf2 board read first two steps from [this](./getting_started.md) guide to learn how to. 
+## 1. Setting Up Python `venv` and `mpremote`
 
-Now we are assuming that you have done those two steps lets connect with shrike over terminal.
-
-We will follow these steps 
-
-
-## 1. Setting Up Python venv and `mpremote`
-
-Mpremote is a python package and we will have to use pip to install it thus we need to a py virtual env. (if you already have one use that).
-
-Or to setup a python Env read [this](https://docs.python.org/3/library/venv.html) and then activate it . 
-
-Now that your v-env is activated we will get mpremote in the env. To do so run this command 
+`mpremote` is a Python package installed via `pip`. Create and activate a Python virtual environment (or reuse an existing one — see the [Python `venv` documentation](https://docs.python.org/3/library/venv.html)), then install `mpremote`:
 
 ```bash
 pip install mpremote
 ```
-if everything run's without error you have successfully got all the tools to access shrike over terminal however if you face issues then google it or ask in our discord. 
 
-Now lets blink led from the terminal 
+:::{tip}
+If you run into installation or serial-port issues, reach out on the [Vicharak Discord](https://discord.com/invite/EhQy97CQ9G) or open an issue on [Shrike GitHub](https://github.com/vicharak-in/shrike/issues).
+:::
+
+Now let's test the connection by blinking an LED from the terminal.
 
 ## 2. Blinking the CPU LED
 
@@ -98,6 +92,7 @@ You can run this script with `mpremote run` as in Step 2, or open the REPL with 
 
 Once the FPGA is flashed, you should see the onboard FPGA LED blinking.
 
-The mpremote has a lot more features as well you can check them all out in there guide [here](https://docs.micropython.org/en/latest/reference/mpremote.html#).
+## Further Reading
 
-Will also suggest reading this [discussion](https://github.com/orgs/micropython/discussions/9096). 
+- [`mpremote` official documentation](https://docs.micropython.org/en/latest/reference/mpremote.html)
+- [MicroPython `mpremote` tips & workflow discussion](https://github.com/orgs/micropython/discussions/9096)
