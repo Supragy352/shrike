@@ -60,36 +60,37 @@ Now let's design the `blink` hardware module in Verilog.
 First, declare the LED output port. On ForgeFPGA, every physical output pin also requires an **output enable** (`_en`) signal — driving it high (`1'b1`) configures the pad as an output:
 
 ```verilog
-module led_blink (
-  output led,
-  output led_en
+module blink (
+  output LED,
+  output LED_en
 );
 endmodule
 ```
 
-To toggle the LED once per second, we use the FPGA's onboard **50 MHz** internal oscillator (`clk`) and count `50_000_000` clock cycles per toggle.
+Next, add the FPGA's onboard **50 MHz** internal oscillator (`clk` + `clk_en`) and a 32-bit counter. Counting `50_000_000` clock cycles at 50 MHz takes **1 second**, so toggling `LED_status` each time the counter reaches `50_000_000` keeps the LED **ON for 1 second and OFF for 1 second** (a **2-second full blink period**, or **0.5 Hz**). To blink at a full **1 Hz** cycle (0.5 s ON, 0.5 s OFF), use `25_000_000` instead.
 
 Here is the complete Verilog module for `main.v`:
 
 ```verilog
-(* top *) module blink(
+(* top *) module blink (
   (* iopad_external_pin, clkbuf_inhibit *) input clk,
   (* iopad_external_pin *) output LED,
   (* iopad_external_pin *) output LED_en,
   (* iopad_external_pin *) output clk_en
 );
 
-  reg [31:0] counter;
-  reg LED_status;
+  reg [31:0] counter = 32'd0;
+  reg LED_status = 1'b0;
 
   assign LED_en = 1'b1;
   assign clk_en = 1'b1;
 
   always @(posedge clk) begin
-    counter <= counter + 1'b1;
-    if (counter == 50_000_000) begin
+    if (counter == 32'd49_999_999) begin
       LED_status <= !LED_status;
-      counter <= 32'b0;
+      counter <= 32'd0;
+    end else begin
+      counter <= counter + 1'b1;
     end
   end
 
@@ -97,6 +98,10 @@ Here is the complete Verilog module for `main.v`:
 
 endmodule
 ```
+
+:::{note}
+Initializing registers (`counter = 32'd0`, `LED_status = 1'b0`) ensures predictable startup behavior in both synthesis and simulation. For larger sequential designs and state machines, also include an explicit synchronous or asynchronous reset input.
+:::
 
 :::{tip}
 Before writing larger Verilog designs for Shrike, check the **[ForgeFPGA Verilog & Synthesis Reference](./verilog_style_guide.md)** to learn how `(* top *)`, `(* iopad_external_pin *)`, and `(* clkbuf_inhibit *)` attributes work.

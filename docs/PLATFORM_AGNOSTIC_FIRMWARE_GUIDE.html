@@ -32,8 +32,8 @@
 <link href="_static/vicharak_icon.png" rel="icon"/>
 <link href="search.html" rel="search" title="Search"/>
 <link href="genindex.html" rel="index" title="Index"/>
-<link href="examples.html" rel="next" title="Shrike Examples"/>
-<link href="shrike_cli_guide.html" rel="prev" title="User guide to access and use shrike from your terminal(CLI)"/>
+<link href="examples.html" rel="next" title="Shrike Examples Catalog"/>
+<link href="shrike_cli_guide.html" rel="prev" title="Shrike CLI Guide (mpremote)"/>
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -140,7 +140,7 @@
 <div id="content" role="main">
 <section id="platform-agnostic-firmware-guide">
 <span id="writing-platform-agnostic-firmware-for-shrike"></span><h1>Writing Platform-Agnostic Firmware for Shrike<a class="headerlink" href="#platform-agnostic-firmware-guide" title="Link to this heading">¶</a></h1>
-<p>This guide explains how to write a single firmware source file that runs on all boards in the Shrike family — Shrike-Lite (RP2040), Shrike (RP2350), and Shrike-fi (ESP32-S3) — without maintaining separate codebases.</p>
+<p>This guide explains how to write a single firmware source file that runs on all boards in the Shrike family — Shrike-lite (RP2040), Shrike (RP2350), and Shrike-fi (ESP32-S3) — without maintaining separate codebases.</p>
 <p>The FPGA side is identical across all boards (same SLG47910 ForgeFPGA, same bitstream). Only the host MCU changes. This guide covers how to handle those MCU differences cleanly.</p>
 <hr class="docutils"/>
 <section id="the-problem">
@@ -155,7 +155,7 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Shrike-Lite</p></td>
+<tr class="row-even"><td><p>Shrike-lite</p></td>
 <td><p>RP2040</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">arduino-pico</span></code> (Earle Philhower)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">rp2</span></code></p></td>
@@ -217,7 +217,7 @@
 </span><span id="line-3"><span class="c1">// =============================================================</span>
 </span><span id="line-4">
 </span><span id="line-5"><span class="cp">#ifdef ARDUINO_ARCH_RP2040</span>
-</span><span id="line-6"><span class="w">  </span><span class="c1">// Shrike-Lite (RP2040) / Shrike (RP2350)</span>
+</span><span id="line-6"><span class="w">  </span><span class="c1">// Shrike-lite (RP2040) / Shrike (RP2350)</span>
 </span><span id="line-7"><span class="w">  </span><span class="cp">#define FPGA_SPI_SS    1</span>
 </span><span id="line-8"><span class="w">  </span><span class="cp">#define FPGA_SPI_SCK   2</span>
 </span><span id="line-9"><span class="w">  </span><span class="cp">#define FPGA_SPI_MOSI  3</span>
@@ -429,7 +429,7 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Shrike-Lite (RP2040)</p></td>
+<tr class="row-even"><td><p>Shrike-lite (RP2040)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">'rp2'</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>Shrike (RP2350)</p></td>
@@ -782,7 +782,7 @@
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Function</p></th>
-<th class="head"><p>Shrike-Lite (RP2040)</p></th>
+<th class="head"><p>Shrike-lite (RP2040)</p></th>
 <th class="head"><p>Shrike (RP2350)</p></th>
 <th class="head"><p>Shrike-fi (ESP32-S3)</p></th>
 </tr>
@@ -840,12 +840,12 @@
 <svg class="mr-2 h-4 w-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
 <polyline points="15 18 9 12 15 6"></polyline>
 </svg>
-        User guide to access and use shrike from your terminal(CLI)
+        Shrike CLI Guide (mpremote)
       </a>
 </div>
 <div class="ml-auto">
 <a class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors border border-input hover:bg-accent hover:text-accent-foreground py-2 px-4" href="examples.html">
-        Shrike Examples
+        Shrike Examples Catalog
         <svg class="ml-2 h-4 w-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
 <polyline points="9 18 15 12 9 6"></polyline>
 </svg>

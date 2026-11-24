@@ -186,40 +186,45 @@
 <span id="2-design--synthesis"></span><h2>2. Design &amp; Synthesis<a class="headerlink" href="#design-synthesis" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#design-synthesis'">¶</a></h2>
 <p>Now let’s design the <code class="docutils literal notranslate"><span class="pre">blink</span></code> hardware module in Verilog.</p>
 <p>First, declare the LED output port. On ForgeFPGA, every physical output pin also requires an <strong>output enable</strong> (<code class="docutils literal notranslate"><span class="pre">_en</span></code>) signal — driving it high (<code class="docutils literal notranslate"><span class="pre">1'b1</span></code>) configures the pad as an output:</p>
-<div class="highlight-verilog notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="k">module</span><span class="w"> </span><span class="n">led_blink</span><span class="w"> </span><span class="p">(</span>
-</span><span id="line-2"><span class="w">  </span><span class="k">output</span><span class="w"> </span><span class="n">led</span><span class="p">,</span>
-</span><span id="line-3"><span class="w">  </span><span class="k">output</span><span class="w"> </span><span class="n">led_en</span>
+<div class="highlight-verilog notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="k">module</span><span class="w"> </span><span class="n">blink</span><span class="w"> </span><span class="p">(</span>
+</span><span id="line-2"><span class="w">  </span><span class="k">output</span><span class="w"> </span><span class="n">LED</span><span class="p">,</span>
+</span><span id="line-3"><span class="w">  </span><span class="k">output</span><span class="w"> </span><span class="n">LED_en</span>
 </span><span id="line-4"><span class="p">);</span>
 </span><span id="line-5"><span class="k">endmodule</span>
 </span></code></pre></div>
 </div>
-<p>To toggle the LED once per second, we use the FPGA’s onboard <strong>50 MHz</strong> internal oscillator (<code class="docutils literal notranslate"><span class="pre">clk</span></code>) and count <code class="docutils literal notranslate"><span class="pre">50_000_000</span></code> clock cycles per toggle.</p>
+<p>Next, add the FPGA’s onboard <strong>50 MHz</strong> internal oscillator (<code class="docutils literal notranslate"><span class="pre">clk</span></code> + <code class="docutils literal notranslate"><span class="pre">clk_en</span></code>) and a 32-bit counter. Counting <code class="docutils literal notranslate"><span class="pre">50_000_000</span></code> clock cycles at 50 MHz takes <strong>1 second</strong>, so toggling <code class="docutils literal notranslate"><span class="pre">LED_status</span></code> each time the counter reaches <code class="docutils literal notranslate"><span class="pre">50_000_000</span></code> keeps the LED <strong>ON for 1 second and OFF for 1 second</strong> (a <strong>2-second full blink period</strong>, or <strong>0.5 Hz</strong>). To blink at a full <strong>1 Hz</strong> cycle (0.5 s ON, 0.5 s OFF), use <code class="docutils literal notranslate"><span class="pre">25_000_000</span></code> instead.</p>
 <p>Here is the complete Verilog module for <code class="docutils literal notranslate"><span class="pre">main.v</span></code>:</p>
-<div class="highlight-verilog notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">top</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">module</span><span class="w"> </span><span class="n">blink</span><span class="p">(</span>
+<div class="highlight-verilog notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">top</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">module</span><span class="w"> </span><span class="n">blink</span><span class="w"> </span><span class="p">(</span>
 </span><span id="line-2"><span class="w">  </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">iopad_external_pin</span><span class="p">,</span><span class="w"> </span><span class="n">clkbuf_inhibit</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">input</span><span class="w"> </span><span class="n">clk</span><span class="p">,</span>
 </span><span id="line-3"><span class="w">  </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">iopad_external_pin</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">output</span><span class="w"> </span><span class="n">LED</span><span class="p">,</span>
 </span><span id="line-4"><span class="w">  </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">iopad_external_pin</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">output</span><span class="w"> </span><span class="n">LED_en</span><span class="p">,</span>
 </span><span id="line-5"><span class="w">  </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">iopad_external_pin</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">output</span><span class="w"> </span><span class="n">clk_en</span>
 </span><span id="line-6"><span class="p">);</span>
 </span><span id="line-7">
-</span><span id="line-8"><span class="w">  </span><span class="kt">reg</span><span class="w"> </span><span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">counter</span><span class="p">;</span>
-</span><span id="line-9"><span class="w">  </span><span class="kt">reg</span><span class="w"> </span><span class="n">LED_status</span><span class="p">;</span>
+</span><span id="line-8"><span class="w">  </span><span class="kt">reg</span><span class="w"> </span><span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">32</span><span class="mi">'d0</span><span class="p">;</span>
+</span><span id="line-9"><span class="w">  </span><span class="kt">reg</span><span class="w"> </span><span class="n">LED_status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span><span class="mb">'b0</span><span class="p">;</span>
 </span><span id="line-10">
 </span><span id="line-11"><span class="w">  </span><span class="k">assign</span><span class="w"> </span><span class="n">LED_en</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span><span class="mb">'b1</span><span class="p">;</span>
 </span><span id="line-12"><span class="w">  </span><span class="k">assign</span><span class="w"> </span><span class="n">clk_en</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span><span class="mb">'b1</span><span class="p">;</span>
 </span><span id="line-13">
 </span><span id="line-14"><span class="w">  </span><span class="k">always</span><span class="w"> </span><span class="p">@(</span><span class="k">posedge</span><span class="w"> </span><span class="n">clk</span><span class="p">)</span><span class="w"> </span><span class="k">begin</span>
-</span><span id="line-15"><span class="w">    </span><span class="n">counter</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">1</span><span class="mb">'b1</span><span class="p">;</span>
-</span><span id="line-16"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">counter</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">50</span><span class="n">_000_000</span><span class="p">)</span><span class="w"> </span><span class="k">begin</span>
-</span><span id="line-17"><span class="w">      </span><span class="n">LED_status</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="o">!</span><span class="n">LED_status</span><span class="p">;</span>
-</span><span id="line-18"><span class="w">      </span><span class="n">counter</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">32</span><span class="mb">'b0</span><span class="p">;</span>
-</span><span id="line-19"><span class="w">    </span><span class="k">end</span>
-</span><span id="line-20"><span class="w">  </span><span class="k">end</span>
-</span><span id="line-21">
-</span><span id="line-22"><span class="w">  </span><span class="k">assign</span><span class="w"> </span><span class="n">LED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LED_status</span><span class="p">;</span>
-</span><span id="line-23">
-</span><span id="line-24"><span class="k">endmodule</span>
+</span><span id="line-15"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">counter</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">32</span><span class="mi">'d49</span><span class="n">_999_999</span><span class="p">)</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="line-16"><span class="w">      </span><span class="n">LED_status</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="o">!</span><span class="n">LED_status</span><span class="p">;</span>
+</span><span id="line-17"><span class="w">      </span><span class="n">counter</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">32</span><span class="mi">'d0</span><span class="p">;</span>
+</span><span id="line-18"><span class="w">    </span><span class="k">end</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="line-19"><span class="w">      </span><span class="n">counter</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">1</span><span class="mb">'b1</span><span class="p">;</span>
+</span><span id="line-20"><span class="w">    </span><span class="k">end</span>
+</span><span id="line-21"><span class="w">  </span><span class="k">end</span>
+</span><span id="line-22">
+</span><span id="line-23"><span class="w">  </span><span class="k">assign</span><span class="w"> </span><span class="n">LED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LED_status</span><span class="p">;</span>
+</span><span id="line-24">
+</span><span id="line-25"><span class="k">endmodule</span>
 </span></code></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Initializing registers (<code class="docutils literal notranslate"><span class="pre">counter</span> <span class="pre">=</span> <span class="pre">32'd0</span></code>, <code class="docutils literal notranslate"><span class="pre">LED_status</span> <span class="pre">=</span> <span class="pre">1'b0</span></code>) ensures predictable startup behavior in both synthesis and simulation. For larger sequential designs and state machines, also include an explicit synchronous or asynchronous reset input.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>

@@ -2,7 +2,7 @@
 
 # Writing Platform-Agnostic Firmware for Shrike
 
-This guide explains how to write a single firmware source file that runs on all boards in the Shrike family — Shrike-Lite (RP2040), Shrike (RP2350), and Shrike-fi (ESP32-S3) — without maintaining separate codebases.
+This guide explains how to write a single firmware source file that runs on all boards in the Shrike family — Shrike-lite (RP2040), Shrike (RP2350), and Shrike-fi (ESP32-S3) — without maintaining separate codebases.
 
 The FPGA side is identical across all boards (same SLG47910 ForgeFPGA, same bitstream). Only the host MCU changes. This guide covers how to handle those MCU differences cleanly.
 
@@ -14,7 +14,7 @@ Each board in the Shrike family uses a different host MCU:
 
 | Board | MCU | Arduino Core | MicroPython Platform |
 |-------|-----|-------------|---------------------|
-| Shrike-Lite | RP2040 | `arduino-pico` (Earle Philhower) | `rp2` |
+| Shrike-lite | RP2040 | `arduino-pico` (Earle Philhower) | `rp2` |
 | Shrike | RP2350 | `arduino-pico` (Earle Philhower) | `rp2` |
 | Shrike-fi | ESP32-S3 | `arduino-esp32` (Espressif) | `esp32` |
 
@@ -54,7 +54,7 @@ The simplest and most common case. Put all pin definitions in a single block at 
 // =============================================================
 
 #ifdef ARDUINO_ARCH_RP2040
-  // Shrike-Lite (RP2040) / Shrike (RP2350)
+  // Shrike-lite (RP2040) / Shrike (RP2350)
   #define FPGA_SPI_SS    1
   #define FPGA_SPI_SCK   2
   #define FPGA_SPI_MOSI  3
@@ -267,7 +267,7 @@ MicroPython doesn't have a preprocessor. Instead, you detect the platform at run
 
 | Board | `sys.platform` |
 |-------|----------------|
-| Shrike-Lite (RP2040) | `'rp2'` |
+| Shrike-lite (RP2040) | `'rp2'` |
 | Shrike (RP2350) | `'rp2'` |
 | Shrike-fi (ESP32-S3) | `'esp32'` |
 
@@ -590,7 +590,7 @@ Does the firmware differ between RP2040 and ESP32?
 
 ### Pin Mapping Reference
 
-| Function | Shrike-Lite (RP2040) | Shrike (RP2350) | Shrike-fi (ESP32-S3) |
+| Function | Shrike-lite (RP2040) | Shrike (RP2350) | Shrike-fi (ESP32-S3) |
 |----------|---------------------|-----------------|---------------------|
 | SPI SS | 1 | 1 | 10 |
 | SPI SCK | 2 | 2 | 12 |

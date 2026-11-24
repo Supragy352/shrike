@@ -21,9 +21,9 @@
 <meta content="#ffffff" media="(prefers-color-scheme: light)" name="theme-color"/>
 <meta content="#030711" media="(prefers-color-scheme: dark)" name="theme-color"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Shrike Examples | Shrike Documentation</title>
-<meta content="Shrike Examples | Shrike Documentation" property="og:title"/>
-<meta content="Shrike Examples | Shrike Documentation" name="twitter:title"/>
+<title>Shrike Examples Catalog | Shrike Documentation</title>
+<meta content="Shrike Examples Catalog | Shrike Documentation" property="og:title"/>
+<meta content="Shrike Examples Catalog | Shrike Documentation" name="twitter:title"/>
 <link href="_static/pygments.css?v=e72c8e07" rel="stylesheet" type="text/css"/>
 <link href="_static/theme.css?v=009055c6" rel="stylesheet" type="text/css"/>
 <link href="_static/sphinx-design.min.css?v=6a604523" rel="stylesheet" type="text/css"/>
@@ -135,11 +135,12 @@
 <path d="M240 856h120V616h240v240h120V496L480 316 240 496v360Zm-80 80V456l320-240 320 240v480H520V696h-80v240H160Zm320-350Z"></path>
 </svg>
 </a>
-<div class="mr-1">/</div><span aria-current="page" class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap">Shrike Examples</span>
+<div class="mr-1">/</div><span aria-current="page" class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap">Shrike Examples Catalog</span>
 </nav>
 <div id="content" role="main">
 <section id="examples">
-<span id="shrike-examples"></span><h1>Shrike Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h1>
+<span id="shrike-examples-catalog"></span><h1>Shrike Examples Catalog<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h1>
+<p>Browse all <strong>32</strong> FPGA + microcontroller examples in the <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">examples/</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a> directory of the Shrike repository. Each folder includes the ForgeFPGA project, Verilog sources, pre-built bitstream, and host MCU firmware.</p>
 <p>🟢 Beginner    🟡 Intermediate    🔴 Advanced</p>
 <table class="docutils align-default">
 <thead>
@@ -148,7 +149,7 @@
 <th class="head"><p>Folder Name</p></th>
 <th class="head"><p>Category</p></th>
 <th class="head"><p>Difficulty</p></th>
-<th class="head"><p>Why</p></th>
+<th class="head"><p>Highlights</p></th>
 </tr>
 </thead>
 <tbody>
@@ -157,7 +158,7 @@
 <td><p><code class="docutils literal notranslate"><span class="pre">led_blink</span></code></p></td>
 <td><p>Getting Started</p></td>
 <td><p>🟢 Beginner</p></td>
-<td><p>Single output signal, no state</p></td>
+<td><p>Single output signal, clock divider</p></td>
 </tr>
 <tr class="row-odd"><td><p>2</p></td>
 <td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/breathing_led" rel="nofollow noopener">Breathing LED<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
@@ -174,144 +175,207 @@
 <td><p>Basic FSM, introduces synchronous logic</p></td>
 </tr>
 <tr class="row-odd"><td><p>4</p></td>
+<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/led_reaction_timer" rel="nofollow noopener">LED Reaction Timer<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">led_reaction_timer</span></code></p></td>
+<td><p>Getting Started</p></td>
+<td><p>🟢 Beginner</p></td>
+<td><p>LFSR pseudo-random delay and millisecond reaction timer</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
 <td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/pmod_led_blink" rel="nofollow noopener">LED PMOD<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">pmod_led_blink</span></code></p></td>
 <td><p>GPIO &amp; I/O</p></td>
 <td><p>🟢 Beginner</p></td>
-<td><p>Direct pin drive, PMOD pinout awareness</p></td>
+<td><p>Direct pin drive, 8-bit PMOD pinout awareness</p></td>
 </tr>
-<tr class="row-even"><td><p>5</p></td>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/pmod_led_patterns" rel="nofollow noopener">PMOD LED Patterns<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pmod_led_patterns</span></code></p></td>
+<td><p>GPIO &amp; I/O</p></td>
+<td><p>🟢 Beginner</p></td>
+<td><p>Shifting, bouncing, snake, and breathing PMOD patterns</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
 <td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/logic_gates" rel="nofollow noopener">Logic Gates<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">logic_gates</span></code></p></td>
 <td><p>Digital Logic</p></td>
 <td><p>🟢 Beginner</p></td>
-<td><p>Pure combinational, no clock needed</p></td>
+<td><p>Pure combinational logic, no clock needed</p></td>
 </tr>
-<tr class="row-odd"><td><p>6</p></td>
+<tr class="row-odd"><td><p>8</p></td>
 <td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/counter_4bit" rel="nofollow noopener">4-Bit Counter<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">counter_4bit</span></code></p></td>
 <td><p>Signal &amp; Timing</p></td>
 <td><p>🟢 Beginner</p></td>
 <td><p>Sequential logic, introduces registers</p></td>
 </tr>
-<tr class="row-even"><td><p>7</p></td>
-<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/pmod_patterns" rel="nofollow noopener">PMOD Patterns<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">pmod_patterns</span></code></p></td>
-<td><p>GPIO &amp; I/O</p></td>
-<td><p>🟡 Intermediate</p></td>
-<td><p>Sequenced output, simple state machine</p></td>
-</tr>
-<tr class="row-odd"><td><p>8</p></td>
+<tr class="row-even"><td><p>9</p></td>
 <td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/gpio_extender_8pin" rel="nofollow noopener">GPIO Extender 8-Pin<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">gpio_extender_8pin</span></code></p></td>
 <td><p>GPIO &amp; I/O</p></td>
 <td><p>🟡 Intermediate</p></td>
-<td><p>FPGA-to-RP2040 IO bridge, bus awareness</p></td>
+<td><p>FPGA-to-MCU I/O bridge, 8-bit bus expansion</p></td>
 </tr>
-<tr class="row-even"><td><p>9</p></td>
+<tr class="row-odd"><td><p>10</p></td>
 <td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/gpio_extender_14pin" rel="nofollow noopener">GPIO Extender 14-Pin<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">gpio_extender_14pin</span></code></p></td>
 <td><p>GPIO &amp; I/O</p></td>
 <td><p>🟡 Intermediate</p></td>
-<td><p>FPGA-to-RP2040 IO bridge, wider bus</p></td>
+<td><p>FPGA-to-MCU I/O bridge, full 14-pin expansion</p></td>
 </tr>
-<tr class="row-odd"><td><p>10</p></td>
+<tr class="row-even"><td><p>11</p></td>
 <td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/i2c_led" rel="nofollow noopener">I2C LED<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">i2c_led</span></code></p></td>
 <td><p>Communication Protocols</p></td>
 <td><p>🟡 Intermediate</p></td>
-<td><p>I2C state machine, clock stretching awareness</p></td>
+<td><p>I2C target state machine and LED control</p></td>
 </tr>
-<tr class="row-even"><td><p>11</p></td>
+<tr class="row-odd"><td><p>12</p></td>
 <td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/spi_loopback_led" rel="nofollow noopener">SPI Loopback LED<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">spi_loopback_led</span></code></p></td>
 <td><p>Communication Protocols</p></td>
 <td><p>🟡 Intermediate</p></td>
 <td><p>SPI shift register, MISO/MOSI routing</p></td>
 </tr>
-<tr class="row-odd"><td><p>12</p></td>
+<tr class="row-even"><td><p>13</p></td>
 <td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/uart_led" rel="nofollow noopener">UART LED<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">uart_led</span></code></p></td>
 <td><p>Communication Protocols</p></td>
 <td><p>🟡 Intermediate</p></td>
 <td><p>UART RX framing, baud clock generation</p></td>
 </tr>
-<tr class="row-even"><td><p>13</p></td>
+<tr class="row-odd"><td><p>14</p></td>
 <td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/morse_blink" rel="nofollow noopener">Morse Blink<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">morse_blink</span></code></p></td>
 <td><p>Communication Protocols</p></td>
 <td><p>🟡 Intermediate</p></td>
-<td><p>UART input, timing/state machine, serial-to-LED translation</p></td>
-</tr>
-<tr class="row-odd"><td><p>14</p></td>
-<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/uart_alu" rel="nofollow noopener">UART ALU<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">uart_alu</span></code></p></td>
-<td><p>Communication Protocols</p></td>
-<td><p>🟡 Intermediate</p></td>
-<td><p>UART + datapath, multi-module design</p></td>
+<td><p>UART input, timing FSM, serial-to-Morse LED output</p></td>
 </tr>
 <tr class="row-even"><td><p>15</p></td>
+<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/uart_sum" rel="nofollow noopener">UART ALU / Sum<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uart_sum</span></code></p></td>
+<td><p>Communication Protocols</p></td>
+<td><p>🟡 Intermediate</p></td>
+<td><p>UART RX/TX + 8-bit adder datapath across MCU and FPGA</p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/spi_to_usb" rel="nofollow noopener">SPI-to-USB Bridge<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">spi_to_usb</span></code></p></td>
+<td><p>Communication Protocols</p></td>
+<td><p>🟡 Intermediate</p></td>
+<td><p>Captures external SPI master bytes and forwards over USB</p></td>
+</tr>
+<tr class="row-even"><td><p>17</p></td>
+<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/usb_to_spi" rel="nofollow noopener">USB-to-SPI Bridge<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">usb_to_spi</span></code></p></td>
+<td><p>Communication Protocols</p></td>
+<td><p>🟡 Intermediate</p></td>
+<td><p>Dual SPI bus bridge (target to MCU, master to external SPI)</p></td>
+</tr>
+<tr class="row-odd"><td><p>18</p></td>
+<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/dspi_pio_echo" rel="nofollow noopener">DSPI PIO Echo<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dspi_pio_echo</span></code></p></td>
+<td><p>Communication Protocols</p></td>
+<td><p>🟡 Intermediate</p></td>
+<td><p>10 MHz Dual-SPI using RP2040 PIO master + ForgeFPGA target</p></td>
+</tr>
+<tr class="row-even"><td><p>19</p></td>
+<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/protocol_translator" rel="nofollow noopener">Protocol Translators<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">protocol_translator</span></code></p></td>
+<td><p>Communication Protocols</p></td>
+<td><p>🟡 Intermediate</p></td>
+<td><p>Six FIFO-backed bridges: I2C↔SPI, I2C↔UART, and SPI↔UART</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
 <td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/pll_oscillator" rel="nofollow noopener">PLL Oscillator<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">pll_oscillator</span></code></p></td>
 <td><p>Signal &amp; Timing</p></td>
 <td><p>🟡 Intermediate</p></td>
-<td><p>PLL primitive instantiation, clock domain</p></td>
+<td><p>PLL primitive instantiation and clock domain configuration</p></td>
 </tr>
-<tr class="row-odd"><td><p>16</p></td>
+<tr class="row-even"><td><p>21</p></td>
 <td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/pwm_4ch" rel="nofollow noopener">PWM 4-Channel<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">pwm_4ch</span></code></p></td>
 <td><p>Signal &amp; Timing</p></td>
 <td><p>🟡 Intermediate</p></td>
-<td><p>Multi-channel counter, duty cycle control</p></td>
+<td><p>Multi-channel counter and independent duty-cycle control</p></td>
 </tr>
-<tr class="row-even"><td><p>17</p></td>
-<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/seven_seg_clock" rel="nofollow noopener">7-Segment Display Clock<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">seven_seg_clock</span></code></p></td>
+<tr class="row-odd"><td><p>22</p></td>
+<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/pmod_dual_7seg" rel="nofollow noopener">Dual 7-Segment Display<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pmod_dual_7seg</span></code></p></td>
 <td><p>Signal &amp; Timing</p></td>
 <td><p>🟡 Intermediate</p></td>
-<td><p>BCD conversion, multiplexed display drive</p></td>
+<td><p>Time-multiplexed 00–99 counter on a PMOD 7-segment display</p></td>
 </tr>
-<tr class="row-odd"><td><p>18</p></td>
+<tr class="row-even"><td><p>23</p></td>
+<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/quadrature_decoder" rel="nofollow noopener">Quadrature Decoder<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">quadrature_decoder</span></code></p></td>
+<td><p>Sensors &amp; Peripherals</p></td>
+<td><p>🟡 Intermediate</p></td>
+<td><p>Decodes rotary encoder A/B signals for position, direction, and speed</p></td>
+</tr>
+<tr class="row-odd"><td><p>24</p></td>
 <td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/ultrasonic_sensor" rel="nofollow noopener">Ultrasonic Sensor<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ultrasonic_sensor</span></code></p></td>
 <td><p>Sensors &amp; Peripherals</p></td>
 <td><p>🟡 Intermediate</p></td>
-<td><p>Pulse timing, echo measurement FSM</p></td>
+<td><p>Pulse timing and echo distance measurement FSM</p></td>
 </tr>
-<tr class="row-even"><td><p>19</p></td>
-<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/ws2812_led" rel="nofollow noopener">WS2812 LED<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
+<tr class="row-even"><td><p>25</p></td>
+<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/ws2812_led" rel="nofollow noopener">WS2812 LED Controller<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ws2812_led</span></code></p></td>
 <td><p>Sensors &amp; Peripherals</p></td>
 <td><p>🟡 Intermediate</p></td>
-<td><p>Precise bit-bang timing, serial protocol</p></td>
+<td><p>Precise single-wire timing for addressable RGB LEDs</p></td>
 </tr>
-<tr class="row-odd"><td><p>20</p></td>
-<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/ask_modulator" rel="nofollow noopener">ASK Modulator<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">ask_modulator</span></code></p></td>
-<td><p>Signal &amp; Timing</p></td>
+<tr class="row-odd"><td><p>26</p></td>
+<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/cordic" rel="nofollow noopener">CORDIC Coprocessor<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cordic</span></code></p></td>
+<td><p>Math &amp; Accelerators</p></td>
 <td><p>🔴 Advanced</p></td>
-<td><p>RF modulation concepts, carrier + data mixing</p></td>
+<td><p>4-mode Q1.6 fixed-point sin/cos/tan + multiplier over SPI</p></td>
 </tr>
-<tr class="row-even"><td><p>21</p></td>
+<tr class="row-even"><td><p>27</p></td>
 <td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/stack_processor" rel="nofollow noopener">Stack Processor<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">stack_processor</span></code></p></td>
 <td><p>Processors &amp; CPUs</p></td>
 <td><p>🔴 Advanced</p></td>
-<td><p>Custom ISA, stack-based execution, SPI host</p></td>
+<td><p>Custom stack-based ISA loaded and driven by MCU over SPI</p></td>
 </tr>
-<tr class="row-odd"><td><p>22</p></td>
+<tr class="row-odd"><td><p>28</p></td>
 <td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/vector4_cpu" rel="nofollow noopener">Vector-4 CPU<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">vector4_cpu</span></code></p></td>
 <td><p>Processors &amp; CPUs</p></td>
 <td><p>🔴 Advanced</p></td>
-<td><p>Full 4-bit SAP CPU: ALU, PC, registers, decode</p></td>
+<td><p>4-bit SAP CPU: ALU, program counter, registers, instruction decode</p></td>
 </tr>
-<tr class="row-even"><td><p>23</p></td>
+<tr class="row-even"><td><p>29</p></td>
 <td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/vector8_cpu" rel="nofollow noopener">Vector-8 CPU<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">vector8_cpu</span></code></p></td>
 <td><p>Processors &amp; CPUs</p></td>
 <td><p>🔴 Advanced</p></td>
-<td><p>Full 8-bit SAP CPU: wider datapath, more opcodes</p></td>
+<td><p>8-bit SAP CPU: wider datapath and expanded opcode set</p></td>
+</tr>
+<tr class="row-odd"><td><p>30</p></td>
+<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/shrike_picorv32" rel="nofollow noopener">PicoRV32 (BRAM)<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">shrike_picorv32</span></code></p></td>
+<td><p>Processors &amp; CPUs</p></td>
+<td><p>🔴 Advanced</p></td>
+<td><p>Runtime-programmable RV32I RISC-V core executing from on-die BRAM</p></td>
+</tr>
+<tr class="row-even"><td><p>31</p></td>
+<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/shrike_picorv32_xip" rel="nofollow noopener">PicoRV32 XIP (64 KB)<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">shrike_picorv32_xip</span></code></p></td>
+<td><p>Processors &amp; CPUs</p></td>
+<td><p>🔴 Advanced</p></td>
+<td><p>RV32I RISC-V executing compiled C programs in place over SPI RAM</p></td>
+</tr>
+<tr class="row-odd"><td><p>32</p></td>
+<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/shrike_serv" rel="nofollow noopener">SERV Bit-Serial RISC-V<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">shrike_serv</span></code></p></td>
+<td><p>Processors &amp; CPUs</p></td>
+<td><p>🔴 Advanced</p></td>
+<td><p>Bit-serial RV32I soft CPU with 4 KB unified BRAM + UART monitor</p></td>
 </tr>
 </tbody>
 </table>
@@ -327,16 +391,16 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>🟢 Beginner</p></td>
-<td><p>6</p></td>
-<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/led_blink" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">led_blink</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/breathing_led" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">breathing_led</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/button_debouncer" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">button_debouncer</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/pmod_led_blink" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">pmod_led_blink</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/logic_gates" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">logic_gates</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/counter_4bit" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">counter_4bit</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
+<td><p>8</p></td>
+<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/led_blink" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">led_blink</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/breathing_led" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">breathing_led</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/button_debouncer" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">button_debouncer</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/led_reaction_timer" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">led_reaction_timer</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/pmod_led_blink" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">pmod_led_blink</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/pmod_led_patterns" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">pmod_led_patterns</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/logic_gates" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">logic_gates</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/counter_4bit" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">counter_4bit</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
 </tr>
 <tr class="row-odd"><td><p>🟡 Intermediate</p></td>
-<td><p>13</p></td>
-<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/pmod_patterns" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">pmod_patterns</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/gpio_extender_8pin" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">gpio_extender_8pin</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/gpio_extender_14pin" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">gpio_extender_14pin</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/i2c_led" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">i2c_led</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/spi_loopback_led" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">spi_loopback_led</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/uart_led" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">uart_led</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/morse_blink" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">morse_blink</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/uart_alu" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">uart_alu</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/pll_oscillator" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">pll_oscillator</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/pwm_4ch" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">pwm_4ch</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/seven_seg_clock" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">seven_seg_clock</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/ultrasonic_sensor" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">ultrasonic_sensor</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/ws2812_led" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">ws2812_led</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
+<td><p>17</p></td>
+<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/gpio_extender_8pin" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">gpio_extender_8pin</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/gpio_extender_14pin" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">gpio_extender_14pin</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/i2c_led" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">i2c_led</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/spi_loopback_led" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">spi_loopback_led</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/uart_led" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">uart_led</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/morse_blink" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">morse_blink</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/uart_sum" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">uart_sum</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/spi_to_usb" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">spi_to_usb</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/usb_to_spi" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">usb_to_spi</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/dspi_pio_echo" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">dspi_pio_echo</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/protocol_translator" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">protocol_translator</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/pll_oscillator" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">pll_oscillator</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/pwm_4ch" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">pwm_4ch</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/pmod_dual_7seg" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">pmod_dual_7seg</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/quadrature_decoder" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">quadrature_decoder</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/ultrasonic_sensor" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">ultrasonic_sensor</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/ws2812_led" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">ws2812_led</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
 </tr>
 <tr class="row-even"><td><p>🔴 Advanced</p></td>
-<td><p>4</p></td>
-<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/ask_modulator" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">ask_modulator</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/stack_processor" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">stack_processor</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/vector4_cpu" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">vector4_cpu</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/vector8_cpu" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">vector8_cpu</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
+<td><p>7</p></td>
+<td><p><a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/cordic" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">cordic</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/stack_processor" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">stack_processor</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/vector4_cpu" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">vector4_cpu</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/vector8_cpu" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">vector8_cpu</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/shrike_picorv32" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">shrike_picorv32</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/shrike_picorv32_xip" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">shrike_picorv32_xip</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a>, <a class="reference external" href="https://github.com/vicharak-in/shrike/tree/main/examples/shrike_serv" rel="nofollow noopener"><code class="docutils literal notranslate"><span class="pre">shrike_serv</span></code><svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></td>
 </tr>
 </tbody>
 </table>
